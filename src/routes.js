@@ -6,8 +6,16 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
   $urlRouterProvider.otherwise('/');
 
   $stateProvider
-    .state('app', {
+    .state('home', {
       url: '/',
-      template: '<app></app>'
+      template: '<adb-home-view></adb-home-view>'
+    })
+    .state('map', {
+      url: '/map',
+      template: '<adb-map-view></adb-map-view>'
+    })
+    .state('data', {
+      url: '/data',
+      template: '<adb-data-view></adb-data-view>'
     });
 }
