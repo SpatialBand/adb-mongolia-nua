@@ -2,6 +2,12 @@
 
 Viewer for Mongolia geospatial data
 
+## Build Status
+
+Master: [![Build Status](https://travis-ci.org/azavea/adb-mongolia-nua.svg?branch=master)](https://travis-ci.org/azavea/adb-mongolia-nua)
+
+Develop: [![Build Status](https://travis-ci.org/azavea/adb-mongolia-nua.svg?branch=develop)](https://travis-ci.org/azavea/adb-mongolia-nua)
+
 ## Development
 
 ### Requirements
