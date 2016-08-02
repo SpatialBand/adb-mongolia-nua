@@ -1,0 +1,37 @@
+.layer-selector {
+  display: block;
+
+  .layer-toggle {
+    @extend .font-alt;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    color: $text-base;
+    opacity: .5;
+
+    .layer-toggle-indicator {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 100%;
+      background: #ddd;
+      margin-right: 1rem;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &.active {
+      color: $brand-primary;
+      opacity: 1;
+
+      .layer-toggle-indicator {
+        background: $brand-primary;
+      }
+    }
+  }
+}

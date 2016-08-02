@@ -1,0 +1,25 @@
+.page-bg {
+	position: fixed;
+  top: 0;
+  bottom: 0;
+  max-width: 880px;
+  margin: auto;
+  z-index: -1;
+  width: 100%;
+  transform: translate(-50%, 0);
+  left: 50%;
+
+	&:before,
+	&:after {
+		content: '';
+		position: relative;
+		height: 100%;
+		width: 50%;
+		float: left;
+		border-left: 1px solid $border-color;
+	}
+
+	&:after {
+		border-right: 1px solid $border-color;
+	}
+}

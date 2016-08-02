@@ -1,0 +1,69 @@
+.panel {
+	background: $white;
+	border: 1px solid $border-color;
+	border-radius: 4px;
+	position: relative;
+	padding-top: 80px;
+	padding-bottom: 80px;
+	margin-bottom: 2rem;
+
+	h2 {
+		letter-spacing: .2em;
+		margin-top: 0;
+		margin-bottom: 0;
+		word-wrap: break-word;
+
+		small {
+			display: block;
+			font-size: 1.6rem;
+			margin-bottom: 2rem;
+		}
+	}
+
+	.long-lat {
+		margin-top: 0;
+		opacity: .5;
+		font-style: 1.4rem;
+	}
+
+	.long-lat + p {
+		max-width: 440px;
+	}
+
+	.overlay-btn {
+		top: 100%;
+		left: -1px;
+	}
+
+	img {
+		position: absolute;
+
+		@media (max-width: 1200px) {
+			right: 0;
+		}
+	}
+}
+
+.panel-icon {
+	position: absolute;
+  left: 50%;
+  font-size: 7rem;
+  top: 0;
+  transform: translate(-50%, -50%);
+  margin-left: -1rem;
+}
+
+.panel-content {
+	max-width: 1040px;
+	margin: auto;
+	padding-left: 8rem;
+
+	@media (max-width: 880px) {
+		padding-left: 1.5rem;
+		padding-right: 1.5rem;
+	}
+}
+
+.data-container .panel-content {
+	padding: 0 1rem;
+}
