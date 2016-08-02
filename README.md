@@ -32,7 +32,7 @@ The available development commands are:
 | `npm run serve:dist` | Build and serve the production version of the application locally: [http://localhost:7880](http://localhost:7880) |
 | `npm run test` | Run the karma test suite once and exit after finishing |
 | `npm run test:auto` | Run the karma test suite and then wait, watching for changes |
-
+| `npm run lint` | Manually run the linter on the project js files |
 
 ### Testing
 
