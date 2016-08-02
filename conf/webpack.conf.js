@@ -30,6 +30,14 @@ module.exports = {
           'ng-annotate',
           'babel'
         ]
+      },
+      {
+        test: /\.(png|jpg|jpeg|svg)$/,
+        loader: 'url-loader'
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)/,
+        loader: 'url-loader'
       }
     ]
   },
