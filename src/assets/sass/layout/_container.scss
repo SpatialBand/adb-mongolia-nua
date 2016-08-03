@@ -1,0 +1,27 @@
+.container {
+	width: 100%;
+	max-width: 1040px;
+	margin: auto;
+
+  @media (max-width: 880px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+.app-container {
+  position: absolute;
+  top: 74px; //height of navbar
+  display: flex;
+  bottom: 0;
+  width: 100%;
+}
+
+.data-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}

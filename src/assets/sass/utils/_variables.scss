@@ -1,0 +1,22 @@
+/* 
+ * LMC Variables
+ * If overridng bootstrap please place inside _bs-variables.scss
+ */
+
+// Brand Colors:
+$brand-primary: #0066b3;   // Blue
+$brand-secondary: #ffd400; // Yellow
+$brand-tertiary: #da2032;  // Red
+
+// Base Colors:
+$text-base: #323349;
+$white: #fff;
+$border-color: #ddd;
+
+// Sections
+$section-padding: 60px;
+
+// Buttons
+$btn-secondary-color:              #fff;
+$btn-secondary-bg:                 $brand-secondary;
+$btn-secondary-border:             darken($btn-secondary-bg, 5%);

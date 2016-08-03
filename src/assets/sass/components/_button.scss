@@ -1,0 +1,67 @@
+.btn {
+	transition: .2s ease-in-out background;
+	padding: 1rem 2rem;
+	color: #fff;
+	letter-spacing: .2em;
+}
+
+.btn-primary {
+	background: $brand-primary;
+}
+
+.btn-secondary {
+	background: $brand-secondary;
+}
+
+.btn-tertiary {
+	background: $brand-tertiary;
+}
+
+.overlay-btn {
+	font-size: 1.8rem;
+	color: $white;
+	padding: 2rem;
+	padding-right: 12rem;
+	position: absolute;
+	letter-spacing: .2em;
+
+	i {
+		position: absolute;
+		top: 50%;
+		right: 1rem;
+		transform: translate(0, -50%);
+		font-size: 3.5rem;
+		transition: .2s ease-in-out transform;
+	}
+
+	&:hover {
+
+		i {
+			transform: translate(5px, -50%);
+		}
+	}
+
+	&.btn-primary {
+		background: rgba($brand-primary, .8);
+
+		&:hover {
+			background: $brand-primary;
+		}
+	}
+
+	&.btn-secondary {
+		background: rgba($brand-secondary, .8);
+
+		&:hover {
+			background: $brand-secondary;
+		}
+	}
+
+	&.btn-tertiary {
+		background: rgba($brand-tertiary, .8);
+
+		&:hover {
+			background: $brand-tertiary;
+		}
+	}
+}

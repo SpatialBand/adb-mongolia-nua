@@ -1,0 +1,32 @@
+.navbar {
+  @extend %clearfix;
+  background: $brand-primary;
+  display: block;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  height: 74px;
+
+  .navigation {
+    display: inline-block;
+    list-style-type: none;
+
+    li {
+      display: inline-block;
+    }
+
+    a {
+      color: #fff;
+      padding: 1rem;
+    }
+  } 
+}
+
+.brand {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 1.2rem;
+
+  > img {
+    max-width: 23rem;
+  }
+}
