@@ -1,0 +1,53 @@
+h1, h2, h3, h4, h5, h6 {
+
+}
+
+h1, .h1 {
+	font-size: 6.2rem;
+}
+
+h2, .h2 {
+	font-size: 4.5rem;
+}
+
+h3, .h3 {
+	font-size: 3.2rem;
+}
+
+h4, .h4 {
+	font-size: 2.2rem;
+}
+
+h5, .h5 {
+	font-size: 1.8rem;
+}
+
+h6, .h6 {
+	font-size: 1.4rem;
+}
+
+p, .p {
+	font-size: 1.8rem;
+	line-height: 2;
+}
+
+.font-alt {
+	font-family: 'Quantico', sans-serif;
+	letter-spacing: .4em;
+}
+
+.text-uppercase {
+	text-transform: uppercase;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.text-left {
+	text-align: left;
+}

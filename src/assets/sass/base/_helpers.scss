@@ -1,0 +1,58 @@
+%clearfix {
+  &:before,
+  &:after {
+    content: '';
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+.clearfix {
+  @extend %clearfix;
+}
+
+.color-primary {
+  color: $brand-primary;
+}
+
+.color-secondary {
+  color: $brand-secondary;
+}
+
+.color-tertiary {
+  color: $brand-tertiary;
+}
+
+.color-positive {
+  color: #50bb30;
+}
+
+.color-negative {
+  color: #bb3047;
+}
+
+.color-light {
+  color: lighten($text-base, 45%);
+}
+
+.bg-primary {
+  background-color: $brand-primary;
+}
+
+.bg-secondary {
+  background-color: $brand-secondary;
+}
+
+.bg-tertiary {
+  background-color: $brand-tertiary;
+}
+
+.pull-right {
+  float: right;
+}
+
+.pull-left {
+  float: left;
+}

@@ -1,0 +1,33 @@
+header {
+	position: relative;
+}
+
+.page-header {
+	height: 70vh;
+	width: 100%;
+	margin-bottom: 8rem;
+	overflow: hidden;
+
+	h1, 
+	h2 {
+		color: $white;
+		margin: 0;
+	}
+
+	h1 {
+		letter-spacing: .2em;
+	}
+}
+
+.header-content {
+	position: absolute;
+	width: 100%;
+	top: 50%;
+	transform: translate(0, -50%);
+}
+
+.home.page-header {
+	background: url(../img/home-header.png) no-repeat;
+	background-position: bottom center;
+	background-size: cover;
+}

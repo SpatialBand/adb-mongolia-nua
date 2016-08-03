@@ -1,0 +1,41 @@
+@media (min-width: 880px) {
+	.half {
+		width: 48%;
+    float: left;
+
+    + .half {
+      margin-left: 4%;
+    }
+	}
+
+  .third {
+    width: 31%;
+    float: left;
+
+    + .third {
+      margin-left: 3.5%;
+    }
+  }
+}
+
+
+.flex-grid {
+  display: flex;
+  flex-flow: row wrap;
+
+  .panel {
+    flex: 1;
+
+    + .panel {
+      margin-left: 2rem;
+    }
+  }
+
+  @media (max-width: 880px) {
+    display: block;
+
+    .panel + .panel {
+      margin-left: 0;
+    }
+  }
+}

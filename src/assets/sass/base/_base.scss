@@ -1,0 +1,29 @@
+*, *:after, *:before {
+	box-sizing: border-box;
+}
+
+html { 
+	font-size: 62.5%; 
+	font-family: 'Lato', sans-serif;
+
+	&.cyrillic {
+		font-family: 'PT Sans', sans-serif;
+
+		.font-alt {
+			font-family: 'Anonymous Pro', sans-serif;
+		}
+	}
+}
+
+body {
+	font-size: 16px; 
+	font-size: 1.6rem;
+	color: $text-base;
+}
+
+a {
+	display: inline-block;
+	text-decoration: none;
+	font-weight: 800;
+	color: $brand-primary;
+}

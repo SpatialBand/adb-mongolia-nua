@@ -30,6 +30,14 @@ module.exports = {
           'ng-annotate',
           'babel'
         ]
+      },
+      {
+        test: /\.(png|jpg|jpeg|svg)$/,
+        loader: 'url-loader'
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)/,
+        loader: 'url-loader'
       }
     ]
   },
@@ -43,7 +51,7 @@ module.exports = {
   ],
   postcss: () => [autoprefixer],
   debug: true,
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'source-map',
   output: {
     path: path.join(process.cwd(), conf.paths.tmp),
     filename: 'index.js'
