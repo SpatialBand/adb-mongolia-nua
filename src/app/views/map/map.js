@@ -20,6 +20,10 @@ class MapViewController {
 
   tabClicked($event, tabId) {
     this.activeTab = tabId;
+    const section = this.config.mapSections[tabId];
+    if (section.visualizations.length) {
+      this._setActiveVis(section.visualizations[0]);
+    }
   }
 
   _setActiveVis(vis) {
@@ -35,7 +39,9 @@ class MapViewController {
     this.activeVis = vis;
     return cartodb.createLayer(this.map, url, {https: true})
       .addTo(this.map)
-      .done(layer => this.activeLayer = layer);
+      .done(layer => {
+        this.activeLayer = layer;
+      });
   }
 
   _setupMap() {
