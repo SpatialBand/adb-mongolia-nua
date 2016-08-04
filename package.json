@@ -1,4 +1,6 @@
 {
+  "name": "adb-mongolia-nua",
+  "version": "0.0.1",
   "dependencies": {
     "angular": "1.5.8",
     "angular-translate": "2.11.1",
