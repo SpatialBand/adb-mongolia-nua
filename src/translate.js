@@ -7,5 +7,7 @@ export default translateConfig;
 function translateConfig($translateProvider) {
   $translateProvider.translations('en', en);
   $translateProvider.translations('mn', mn);
+
+  $translateProvider.useSanitizeValueStrategy('escape');
   $translateProvider.preferredLanguage('en');
 }
