@@ -30,6 +30,10 @@ module.exports = {
       }
     ]
   },
+  externals: {
+    leaflet: 'L',
+    cartodb: 'cartodb'
+  },
   plugins: [],
   debug: true,
   devtool: 'cheap-module-eval-source-map'

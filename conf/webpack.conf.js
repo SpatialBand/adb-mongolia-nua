@@ -56,5 +56,9 @@ module.exports = {
     path: path.join(process.cwd(), conf.paths.tmp),
     filename: 'index.js'
   },
+  externals: {
+    leaflet: 'L',
+    cartodb: 'cartodb'
+  },
   entry: `./${conf.path.src('index')}`
 };
