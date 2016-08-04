@@ -46,4 +46,47 @@ Run tests with `npm run test`
 
 ## Deployment
 
-TODO: Fill out on first deployment
+### Requirements
+
+ - Java
+ - Ruby
+
+### Getting Started
+
+After ensuring that Java/Ruby are installed on your system, install s3_website:
+```
+gem install s3_website
+```
+You may need to install with `sudo` depending on your configuration.
+
+Then copy the `.env.example` file to `.env` and add the appropriate access key and secret key to
+the file.
+
+### Deploying a new version
+
+_tldr_
+```
+npm run build
+npm run serve:dist
+# Load the application in the browser at this point to verify everything in the new build works
+s3_website push
+```
+
+Whenever a deployment is done, also cut a new tagged release using the git flow model, and add
+appropriate comments to the changelog.
+
+### Modifying the deployment
+
+Update the configuration in s3_website.yml, then run `s3_website cfg apply`.
+
+Some changes may require a new deployment, see above.
+
+s3_website docs are on the project's GitHub repo:
+https://github.com/laurilehmijoki/s3_website
+
+### S3/CloudFront permissions
+
+If the deployment or configuration changes fail with permissions errors, you may need to ensure
+that your keys have the proper permissions to perform the actions that s3_website is attempting.
+This configuration should have the permissions that s3_website requires:
+https://github.com/laurilehmijoki/s3_website/blob/master/additional-docs/setting-up-aws-credentials.md

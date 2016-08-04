@@ -2,7 +2,7 @@
 <div class="app-container">
   <div class="sidebar">
     <nav class="tabs">
-      <a href="#" class="tab"
+      <a class="tab"
          ng-click="$ctrl.tabClicked($event, key)"
          ng-repeat="(key, section) in $ctrl.config.mapSections"
          ng-class="{'active': key === $ctrl.activeTab}">
@@ -17,7 +17,7 @@
         <h4 class="tab-pane-heading">{{ ::section.title }}</h4>
         <div class="tab-pane-body">
           <div class="layer-selector">
-            <a href="#" class="layer-toggle"
+            <a class="layer-toggle"
                ng-repeat="vis in section.visualizations"
                ng-click="$ctrl.onVisSelected(vis)"
                ng-class="{'active': $ctrl.activeVis.id === vis.id}">
