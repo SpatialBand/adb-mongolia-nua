@@ -16,7 +16,6 @@ module.exports = {
         loader: 'eslint'
       }
     ],
-
     loaders: [
       {
         test: /.json$/,
@@ -26,7 +25,7 @@ module.exports = {
       },
       {
         test: /\.(css|scss)$/,
-        loaders: ExtractTextPlugin.extract('style', 'css?minimize!sass', 'postcss')
+        loader: ExtractTextPlugin.extract('style', 'css?minimize!sass', 'postcss')
       },
       {
         test: /\.js$/,
@@ -35,6 +34,14 @@ module.exports = {
           'ng-annotate',
           'babel'
         ]
+      },
+      {
+        test: /\.(png|jpg|jpeg|svg)$/,
+        loader: 'url-loader'
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)/,
+        loader: 'url-loader'
       }
     ]
   },
@@ -58,6 +65,10 @@ module.exports = {
   output: {
     path: path.join(process.cwd(), conf.paths.dist),
     filename: '[name]-[hash].js'
+  },
+  externals: {
+    leaflet: 'L',
+    cartodb: 'cartodb'
   },
   entry: {
     app: [
