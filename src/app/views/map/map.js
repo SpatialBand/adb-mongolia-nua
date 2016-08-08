@@ -1,16 +1,18 @@
-const L = require('leaflet');
 const cartodb = require('cartodb');
 
-class MapViewController {
+import {ADBMapController} from '../../adb-map.controller';
+
+class MapViewController extends ADBMapController {
   /** @ngInject */
   constructor($log, Config) {
+    super(Config, 'map');
     this.$log = $log;
-    this.config = Config;
   }
 
   $onInit() {
+    super.$onInit();
+
     this.activeTab = 'people';
-    this._setupMap();
   }
 
   onVisSelected(vis) {
@@ -45,13 +47,7 @@ class MapViewController {
   }
 
   _setupMap() {
-    this.map = L.map('map', {zoomControl: false}).setView([46.8625, 103.8467], 5);
-    this.basemap = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-      maxZoom: 19
-    });
-    this.map.addLayer(this.basemap);
-    this.map.addControl(L.control.zoom({position: 'topright'}));
+    super._setupMap();
 
     const peopleSection = this.config.mapSections.people;
     this._setActiveVis(peopleSection.visualizations[0]);

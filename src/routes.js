@@ -15,7 +15,7 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
       template: '<adb-map-view></adb-map-view>'
     })
     .state('data', {
-      url: '/data',
+      url: '/data/:soumCode',
       template: '<adb-data-view></adb-data-view>'
     });
 }
