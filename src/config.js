@@ -12,6 +12,9 @@ const config = {
         maxZoom: 19
       }
     },
+    options: {
+      zoomControl: false
+    },
     view: {
       center: [46.8625, 103.8467],
       zoom: 5

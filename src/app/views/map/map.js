@@ -46,8 +46,8 @@ class MapViewController extends ADBMapController {
       });
   }
 
-  _setupMap() {
-    super._setupMap();
+  _setupMap(options) {
+    super._setupMap(options);
 
     const peopleSection = this.config.mapSections.people;
     this._setActiveVis(peopleSection.visualizations[0]);

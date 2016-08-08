@@ -8,13 +8,13 @@ export class ADBMapController {
   }
 
   $onInit() {
-    this._setupMap();
+    this._setupMap(this.config.map);
   }
 
-  _setupMap() {
-    const view = this.config.map.view;
-    const basemap = this.config.map.basemap;
-    this.map = L.map(this.mapId, {zoomControl: false}).setView(view.center, view.zoom);
+  _setupMap(options) {
+    const view = options.view;
+    const basemap = options.basemap;
+    this.map = L.map(this.mapId, options.options).setView(view.center, view.zoom);
     this.basemap = L.tileLayer(basemap.url, basemap.options);
 
     this.map.addLayer(this.basemap);

@@ -15,6 +15,11 @@ class DataViewController extends ADBMapController {
     this.soumCode = this.$stateParams.soumCode;
     this.$log.debug('soum code:', this.soumCode);
   }
+
+  _setupMap(options) {
+    options.options.scrollWheelZoom = false;
+    super._setupMap(options);
+  }
 }
 
 export const adbDataView = {
