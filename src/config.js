@@ -67,7 +67,7 @@ const config = {
         title: 'Herder Households as % Total Households 2014'
       }, {
         id: 'e179f47f-7a0d-4c03-b1fc-b9cd1b7e7820',
-        field: 'chhpc0614',
+        field: 'chhpc0613',
         title: 'Change in Herder\'s Share (%) of Total Households 2006-2013'
       }]
     },
@@ -98,10 +98,10 @@ const config = {
         id: '9adf865a-337a-4960-8f1d-2bd0c6420f56',
         field: 'chpcpov11',
         title: '% Change of Population in Poverty 2002-2011'
-      }, {
-        id: '9de67942-55a5-11e6-b640-0e3ff518bd15',
-        field: 'SDI',
-        title: 'SOUM Development Index 2014'
+      // }, {
+      //  id: '9de67942-55a5-11e6-b640-0e3ff518bd15',
+      //  field: 'SDI',
+      //  title: 'SOUM Development Index 2014'
       }]
     },
     infrastructure: {
