@@ -10,7 +10,9 @@ export function SoumData($log, $http, $q, Config) {
         loadSoumData(soumId).then(responses => {
           // Pass all response objects to merge them together as one row
           const combinedRow = mergeResponses(responses);
+          // Format the combined result with the same structure as Config
           const soum = formatSoumData(combinedRow);
+          // Done!
           resolve(soum);
         }, () => {
           reject();
@@ -20,6 +22,9 @@ export function SoumData($log, $http, $q, Config) {
   };
 
   function mergeResponses(responses) {
+    // Take several CartoSQL responses (Assuming a single row each) and return
+    //  an object with the combined columns from each. Repeated column names
+    //  are overwritten.
     const result = {};
     for (let i = 0; i < responses.length; i++) {
       const row = responses[i].data.rows[0];
@@ -29,11 +34,11 @@ export function SoumData($log, $http, $q, Config) {
         }
       }
     }
-    $log.debug(result);
     return result;
   }
 
   function formatSoumData(soumRow) {
+    // Take a key->value row from CartoSQL and format it the same way as Config
     const soum = {};
     for (const label in Config.mapSections) {
       if (Config.mapSections.hasOwnProperty(label)) {
@@ -46,6 +51,8 @@ export function SoumData($log, $http, $q, Config) {
   }
 
   function processSection(soumRow, section) {
+    // Process through a section of the Config definitions and add values from
+    //  CartoSQL to each field.
     const results = {};
     for (let i = 0; i < section.visualizations.length; i++) {
       // Create a copy of this column so we don't change the actual config
@@ -58,6 +65,8 @@ export function SoumData($log, $http, $q, Config) {
   }
 
   function getAllFields() {
+    // Parse through the config to build a mapping of {table: [field...]} for all
+    //  columns referenced.
     const fields = {};
     for (const label in Config.mapSections) {
       if (Config.mapSections.hasOwnProperty(label)) {
@@ -75,6 +84,8 @@ export function SoumData($log, $http, $q, Config) {
   }
 
   function loadSoumData(soumId) {
+    // Given a Soum ID, use CartoSQL to load all data referenced in the Config
+    //  for that Soum.
     const fieldList = getAllFields();
     const promises = [];
 
