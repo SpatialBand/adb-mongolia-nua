@@ -7,9 +7,10 @@ export function SoumData($log, $http, $q, Config) {
       // Return a promise that resolves with the constructed soum
       return $q((resolve, reject) => {
         // Send a HTTP request to load the soum's raw data
-        loadSoumData(soumId).then(response => {
-          const row = response.data.rows[0];
-          const soum = formatSoumData(row);
+        loadSoumData(soumId).then(responses => {
+          // Pass all response objects to merge them together as one row
+          const combinedRow = mergeResponses(responses);
+          const soum = formatSoumData(combinedRow);
           resolve(soum);
         }, () => {
           reject();
@@ -17,6 +18,20 @@ export function SoumData($log, $http, $q, Config) {
       });
     }
   };
+
+  function mergeResponses(responses) {
+    const result = {};
+    for (let i = 0; i < responses.length; i++) {
+      const row = responses[i].data.rows[0];
+      for (const key in row) {
+        if (row.hasOwnProperty(key)) {
+          result[key] = row[key];
+        }
+      }
+    }
+    $log.debug(result);
+    return result;
+  }
 
   function formatSoumData(soumRow) {
     const soum = {};
@@ -33,7 +48,9 @@ export function SoumData($log, $http, $q, Config) {
   function processSection(soumRow, section) {
     const results = {};
     for (let i = 0; i < section.visualizations.length; i++) {
+      // Create a copy of this column so we don't change the actual config
       const variable = Object.assign({}, section.visualizations[i]);
+      // Attach this Soum's value to the column object
       variable.value = soumRow[variable.field];
       results[variable.field] = variable;
     }
@@ -41,12 +58,16 @@ export function SoumData($log, $http, $q, Config) {
   }
 
   function getAllFields() {
-    const fields = [];
+    const fields = {};
     for (const label in Config.mapSections) {
       if (Config.mapSections.hasOwnProperty(label)) {
-        const section = Config.mapSections[label];
-        for (let i = 0; i < section.visualizations.length; i++) {
-          fields.push(section.visualizations[i].field);
+        const section = Config.mapSections[label].visualizations;
+        for (let i = 0; i < section.length; i++) {
+          const table = section[i].table || 'soums';
+          if (!fields[table]) {
+            fields[table] = [];
+          }
+          fields[table].push(section[i].field);
         }
       }
     }
@@ -54,14 +75,23 @@ export function SoumData($log, $http, $q, Config) {
   }
 
   function loadSoumData(soumId) {
-    const fields = getAllFields().join(',');
-    const query = `SELECT ${fields} FROM soums WHERE soumcode = ${soumId}`;
+    const fieldList = getAllFields();
+    const promises = [];
 
-    const request = {
-      method: 'GET',
-      url: `https://${username}.carto.com/api/v2/sql?q=${query}`
-    };
+    for (const table in fieldList) {
+      if (fieldList.hasOwnProperty(table)) {
+        const fields = fieldList[table].join(',');
+        const query = `SELECT ${fields} FROM ${table} WHERE soumcode = ${soumId}`;
 
-    return $http(request);
+        const request = {
+          method: 'GET',
+          url: `https://${username}.carto.com/api/v2/sql?q=${query}`
+        };
+
+        promises.push($http(request));
+      }
+    }
+
+    return $q.all(promises);
   }
 }
