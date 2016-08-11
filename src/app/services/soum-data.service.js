@@ -1,18 +1,37 @@
+const cartodb = require('cartodb');
+
 /* ngInject */
 export function SoumData($log, $http, $q, Config) {
   return {
-    load: soumId => {
-      // Return a promise that resolves with the constructed soum
-      return loadSoumData(soumId).then(responses => {
-        // Pass all response objects to merge them together as one row
-        const combinedRow = mergeResponses(responses);
-        // Format the combined result with the same structure as Config
-        const soum = formatSoumData(combinedRow);
-        // Done!
-        return soum;
-      });
-    }
+    geojson,
+    load
   };
+
+  function geojson(soumId) {
+    // Given a soumId return the geojson boundary for it
+    // Wrap in angular promise so we're consistent with the types of promises we're
+    //  using in public APIs
+    const dfd = $q.defer();
+    const sql = new cartodb.SQL({user: Config.carto.accountName});
+    sql.execute("SELECT the_geom FROM soums WHERE soumcode = {{soumcode}}", {
+      soumcode: soumId
+    }, {
+      format: 'geojson'
+    }).done(data => dfd.resolve(data)).error(error => dfd.reject(error));
+    return dfd.promise;
+  }
+
+  function load(soumId) {
+    // Return a promise that resolves with the constructed soum
+    return loadSoumData(soumId).then(responses => {
+      // Pass all response objects to merge them together as one row
+      const combinedRow = mergeResponses(responses);
+      // Format the combined result with the same structure as Config
+      const soum = formatSoumData(combinedRow);
+      // Done!
+      return soum;
+    });
+  }
 
   function mergeResponses(responses) {
     // Take several CartoSQL responses (Assuming a single row each) and return
