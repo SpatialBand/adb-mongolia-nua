@@ -9,7 +9,6 @@ class InfoblockController {
     if (!this.variable) {
       return;
     }
-    this.$log.log(this);
 
     this.value = this.variable.value;
     this.title = this.variable.title;

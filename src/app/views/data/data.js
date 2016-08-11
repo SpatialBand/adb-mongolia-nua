@@ -21,7 +21,6 @@ class DataViewController extends ADBMapController {
 
     this.soumData.geojson(this.soumCode).then(geojson => this._addGeoJSONLayer(geojson));
     this.soumData.load(this.soumCode).then(soum => {
-      this.$log.debug(soum);
       this.soum = soum;
     });
   }
