@@ -20,10 +20,21 @@ const config = {
       zoom: 5
     }
   },
+  metadata: {
+    table: 'soums',
+    fields: [{
+      field: 'soum',
+      key: 'soum_name'
+    }, {
+      field: 'aimag',
+      key: 'aimag_name'
+    }]
+  },
   mapSections: {
     people: {
       title: 'People',
       icon: 'icon-group',
+      table: 'soums',
       visualizations: [{
         id: 'a98489e1-9e4f-4858-b900-f01b10c62461',
         field: 'pop14',
@@ -49,6 +60,7 @@ const config = {
     households: {
       title: 'Households',
       icon: 'icon-bus',
+      table: 'soums',
       visualizations: [{
         id: '174eb7cc-cc92-449b-9773-e3d5aab64e41',
         field: 'hh14',
@@ -74,6 +86,7 @@ const config = {
     economy: {
       title: 'Economy',
       icon: 'icon-briefcase',
+      table: 'soums',
       visualizations: [{
         id: 'accdffb8-54f4-11e6-af54-0e233c30368f',
         field: 'ent14',
@@ -108,6 +121,7 @@ const config = {
     infrastructure: {
       title: 'Infrastructure',
       icon: 'icon-book',
+      table: 'soums',
       visualizations: [{
         id: '9db8a964-559a-11e6-9426-0e3ff518bd15',
         field: 'pcger10',

@@ -53,20 +53,22 @@ export function SoumData($log, $http, $q, Config) {
     const soum = {};
     for (const label of Object.keys(Config.mapSections)) {
       const section = Config.mapSections[label];
-      soum[label] = processSection(soumRow, section);
+      soum[label] = processSection(soumRow, section, 'visualizations');
     }
+    soum['metadata'] = processSection(soumRow, Config.metadata, 'fields');
 
     return soum;
   }
 
-  function processSection(soumRow, section) {
+  function processSection(soumRow, section, container) {
     // Process through a section of the Config definitions and add values from
     //  CartoSQL to each field.
     const results = {};
-    for (const variable of section.visualizations) {
+    for (const variable of section[container]) {
       // Attach this Soum's value to the column object
       variable.value = soumRow[variable.field];
-      results[variable.field] = variable;
+      const id = variable.key || variable.field;
+      results[id] = variable;
     }
     return results;
   }
@@ -76,16 +78,20 @@ export function SoumData($log, $http, $q, Config) {
     //  columns referenced.
     const fields = {};
     for (const label of Object.keys(Config.mapSections)) {
-      const section = Config.mapSections[label];
-      for (const variable of section.visualizations) {
-        const table = variable.table || 'soums';
-        if (!fields[table]) {
-          fields[table] = [];
-        }
-        fields[table].push(variable.field);
-      }
+      loadSectionFields(fields, Config.mapSections[label], 'visualizations');
     }
+    loadSectionFields(fields, Config.metadata, 'fields');
     return fields;
+  }
+
+  function loadSectionFields(fields, section, container) {
+    for (const variable of section[container]) {
+      const table = variable.table || section.table;
+      if (!fields[table]) {
+        fields[table] = [];
+      }
+      fields[table].push(variable.field);
+    }
   }
 
   function loadSoumData(soumId) {
