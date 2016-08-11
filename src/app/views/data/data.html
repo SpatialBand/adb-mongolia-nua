@@ -5,7 +5,7 @@
   <main>
     <div class="container">
       <a ui-sref="map" class="pull-right"><i class="icon-arrow-left"></i> Back to Map</a>
-      <h1 class="h5 font-alt text-uppercase">Mongolia, Ulaanbaatar, Baganuur</h1>
+      <h1 class="h5 font-alt text-uppercase">Mongolia, {{ $ctrl.soum.metadata.aimag_name.value }}, {{ $ctrl.soum.metadata.soum_name.value }}</h1>
     </div>
 
     <!-- PEOPLE Section -->
@@ -13,18 +13,8 @@
       <div class="container">
         <h2>PEOPLE</h2>
         <div class="flex-grid">
-          <div class="panel half">
-            <div class="panel-content text-center">
-              <h2>28,333</h2>
-              <p class="font-alt color-light text-uppercase">Population 2014</p>
-            </div>
-          </div>
-          <div class="panel half">
-            <div class="panel-content text-center">
-              <h2 class="color-positive">+11,995</h2>
-              <p class="font-alt color-light text-uppercase">Pop. Change 1995-2014</p>
-            </div>
-          </div>
+          <adb-infoblock-view variable="$ctrl.soum.people.pop14" class="panel half"></adb-infoblock-view>
+          <adb-infoblock-view variable="$ctrl.soum.people.pchn9514" class="panel half" is-change="true" is-percent="true"></adb-infoblock-view>
         </div>
         <div class="panel">
           <div class="panel-content text-center">
@@ -32,24 +22,9 @@
           </div>
         </div>
         <div class="flex-grid">
-          <div class="panel third">
-            <div class="panel-content text-center">
-              <h2>0.99%</h2>
-              <p class="font-alt color-light text-uppercase">% Share of Mongolia's Population</p>
-            </div>
-          </div>
-          <div class="panel third">
-            <div class="panel-content text-center">
-              <h2 class="color-positive">+0.19%</h2>
-              <p class="font-alt color-light text-uppercase">Change in % share 1995-2014</p>
-            </div>
-          </div>
-          <div class="panel third">
-            <div class="panel-content text-center">
-              <h2 class="">46 People</h2>
-              <p class="font-alt color-light text-uppercase">Population Density per sq. km.</p>
-            </div>
-          </div>
+          <adb-infoblock-view variable="$ctrl.soum.people.sh14" class="panel third" is-percent="true"></adb-infoblock-view>
+          <adb-infoblock-view variable="$ctrl.soum.people.shch9514" class="panel third" is-change="true" is-percent="true"></adb-infoblock-view>
+          <adb-infoblock-view variable="$ctrl.soum.people.den14" class="panel third"></adb-infoblock-view>
         </div>
       </div>
     </section>
@@ -60,18 +35,8 @@
       <div class="container">
         <h2>HOUSEHOLDS</h2>
         <div class="flex-grid">
-          <div class="panel half">
-            <div class="panel-content text-center">
-              <h2>8,272</h2>
-              <p class="font-alt color-light text-uppercase">Households 2014</p>
-            </div>
-          </div>
-          <div class="panel half">
-            <div class="panel-content text-center">
-              <h2 class="color-positive">+1,674</h2>
-              <p class="font-alt color-light text-uppercase">HH. Change 1995-2014</p>
-            </div>
-          </div>
+          <adb-infoblock-view variable="$ctrl.soum.households.hh14" class="panel half"></adb-infoblock-view>
+          <adb-infoblock-view variable="$ctrl.soum.households.chnhh614" class="panel half" is-change="true"></adb-infoblock-view>
         </div>
         <div class="panel">
           <div class="panel-content text-center">
@@ -79,30 +44,9 @@
           </div>
         </div>
         <div class="flex-grid">
-          <div class="panel third">
-            <div class="panel-content text-center">
-              <h2>642</h2>
-              <p class="font-alt color-light text-uppercase">Herder Households</p>
-            </div>
-          </div>
-          <div class="panel third">
-            <div class="panel-content text-center">
-              <h2 class="">7.8%</h2>
-              <p class="font-alt color-light text-uppercase">Herder % share of Houseshold</p>
-            </div>
-          </div>
-          <div class="panel third">
-            <div class="panel-content text-center">
-              <h2 class="color-negative">-1.9%</h2>
-              <p class="font-alt color-light text-uppercase">Change in Herder % share 1995-2014</p>
-            </div>
-          </div>
-          <div class="panel">
-            <div class="panel-content text-center">
-              <h2 class="color-negative">-1.9%</h2>
-              <p class="font-alt color-light text-uppercase">Change in Herder % share 1995-2014</p>
-            </div>
-          </div>
+          <adb-infoblock-view variable="$ctrl.soum.households.hhh14" class="panel third"></adb-infoblock-view>
+          <adb-infoblock-view variable="$ctrl.soum.households.hpc14" class="panel third"></adb-infoblock-view>
+          <adb-infoblock-view variable="$ctrl.soum.households.chhpc0613" class="panel third" is-change="true" is-percent="true"></adb-infoblock-view>
         </div>
       </div>
     </section>
@@ -114,49 +58,16 @@
         <h2>ECONOMY</h2>
         <div class="flex-grid">
           <div class="panel third">
-            <div class="panel-content text-center">
-              <h2>188</h2>
-              <p class="font-alt color-light text-uppercase">Total Number of Enterprises 2014</p>
-            </div>
-          </div>
-          <div class="panel third">
-            <div class="panel-content text-center">
-              <h2 class="color-positive">+126</h2>
-              <p class="font-alt color-light text-uppercase">Change on Number of Enterprises 2000-2014</p>
-            </div>
-          </div>
-          <div class="panel third">
-            <div class="panel-content text-center">
-              <h2 class="color-positive">2.64</h2>
-              <p class="font-alt color-light text-uppercase">Soum Development Index (SDI)</p>
-            </div>
+            <adb-infoblock-view variable="$ctrl.soum.economy.ent14" class="panel third"></adb-infoblock-view>
+            <adb-infoblock-view variable="$ctrl.soum.economy.ent0014" class="panel third" is-change="true"></adb-infoblock-view>
+            <adb-infoblock-view variable="$ctrl.soum.economy.sdi" class="panel third" color-override="positive"></adb-infoblock-view>
           </div>
         </div>
         <div class="flex-grid">
-          <div class="panel">
-            <div class="panel-content text-center">
-              <h2>27</h2>
-              <p class="font-alt color-light text-uppercase">Number of manufacturing enterprises 2014</p>
-            </div>
-          </div>
-          <div class="panel">
-            <div class="panel-content text-center">
-              <h2 class="text-positive">+15</h2>
-              <p class="font-alt color-light text-uppercase">Change in manufacturing enterprises 2000-14</p>
-            </div>
-          </div>
-          <div class="panel">
-            <div class="panel-content text-center">
-              <h2 class="color-negative">15%</h2>
-              <p class="font-alt color-light text-uppercase">% population in poverty</p>
-            </div>
-          </div>
-          <div class="panel">
-            <div class="panel-content text-center">
-              <h2 class="color-negative">-13.7%</h2>
-              <p class="font-alt color-light text-uppercase">% change in poverty 2002-2011</p>
-            </div>
-          </div>
+          <adb-infoblock-view variable="$ctrl.soum.economy.man14" class="panel"></adb-infoblock-view>
+          <adb-infoblock-view variable="$ctrl.soum.economy.chman0014" class="panel" is-change="true"></adb-infoblock-view>
+          <adb-infoblock-view variable="$ctrl.soum.economy.pcpov11" class="panel" is-percent="true" color-override="negative"></adb-infoblock-view>
+          <adb-infoblock-view variable="$ctrl.soum.economy.chpcpov11" class="panel" is-percent="true" is-change="true" reverse-color="true"></adb-infoblock-view>
         </div>
       </div>
     </section>
@@ -172,38 +83,13 @@
           </div>
         </div>
         <div class="flex-grid">
-          <div class="panel">
-            <div class="panel-content text-center">
-              <h2>32.5%</h2>
-              <p class="font-alt color-light text-uppercase">% population living in Ger 2010</p>
-            </div>
-          </div>
-          <div class="panel">
-            <div class="panel-content text-center">
-              <h2 class="color-positive">45.7%</h2>
-              <p class="font-alt color-light text-uppercase">% population with indoor sanitation 2010</p>
-            </div>
-          </div>
-          <div class="panel">
-            <div class="panel-content text-center">
-              <h2 class="color-positive">45.7%</h2>
-              <p class="font-alt color-light text-uppercase">% population with access to piped water 2010</p>
-            </div>
-          </div>
+          <adb-infoblock-view variable="$ctrl.soum.infrastructure.pcger10" class="panel"></adb-infoblock-view>
+          <adb-infoblock-view variable="$ctrl.soum.infrastructure.pcsan10" class="panel" color-override="positive"></adb-infoblock-view>
+          <adb-infoblock-view variable="$ctrl.soum.infrastructure.pcwat10" class="panel" color-override="positive"></adb-infoblock-view>
         </div>
         <div class="flex-grid">
-          <div class="panel">
-            <div class="panel-content text-center">
-              <h2 class="color-positive">95.4%</h2>
-              <p class="font-alt color-light text-uppercase">% population with organized solid waste disposal 2010</p>
-            </div>
-          </div>
-          <div class="panel">
-            <div class="panel-content text-center">
-              <h2 class="color-positive">59.3%</h2>
-              <p class="font-alt color-light text-uppercase">% population with internet access 2010</p>
-            </div>
-          </div>
+          <adb-infoblock-view variable="$ctrl.soum.infrastructure.pcsw10" class="panel" color-override="positive"></adb-infoblock-view>
+          <adb-infoblock-view variable="$ctrl.soum.infrastructure.pcint10" class="panel" color-override="positive"></adb-infoblock-view>
         </div>
       </div>
     </section>
