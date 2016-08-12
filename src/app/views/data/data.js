@@ -20,9 +20,7 @@ class DataViewController extends ADBMapController {
     this.$log.debug('soum code:', this.soumCode);
 
     this.soumData.geojson(this.soumCode).then(geojson => this._addGeoJSONLayer(geojson));
-    this.soumData.load(this.soumCode).then(soum => {
-      this.soum = soum;
-    });
+    this.soumData.load(this.soumCode).then(soum => this.soum = soum); // eslint-disable-line no-return-assign
   }
 
   _setupMap(options) {
