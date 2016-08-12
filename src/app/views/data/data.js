@@ -5,8 +5,8 @@ const L = require('leaflet');
 class DataViewController extends ADBMapController {
 
   /** @ngInject */
-  constructor($log, $stateParams, Config, SoumData) {
-    super(Config, 'dataMap');
+  constructor($filter, $log, $stateParams, Config, SoumData) {
+    super($filter, Config, 'dataMap');
     this.$log = $log;
     this.$stateParams = $stateParams;
     this.soumData = SoumData;

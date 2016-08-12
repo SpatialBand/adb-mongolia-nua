@@ -4,8 +4,8 @@ import {ADBMapController} from '../../adb-map.controller';
 
 class MapViewController extends ADBMapController {
   /** @ngInject */
-  constructor($log, Config) {
-    super(Config, 'map');
+  constructor($filter, $log, Config) {
+    super($filter, Config, 'map');
     this.$log = $log;
   }
 
