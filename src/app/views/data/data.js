@@ -1,7 +1,6 @@
 import {ADBMapController} from '../../adb-map.controller';
 
 const L = require('leaflet');
-const cartodb = require('cartodb');
 
 class DataViewController extends ADBMapController {
 
