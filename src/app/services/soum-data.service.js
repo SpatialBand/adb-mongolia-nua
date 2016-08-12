@@ -1,6 +1,6 @@
 const cartodb = require('cartodb');
 
-/* ngInject */
+/** @ngInject */
 export function SoumData($log, $http, $q, Config) {
   return {
     geojson,
@@ -55,7 +55,7 @@ export function SoumData($log, $http, $q, Config) {
       const section = Config.mapSections[label];
       soum[label] = processSection(soumRow, section, 'visualizations');
     }
-    soum['metadata'] = processSection(soumRow, Config.metadata, 'fields');
+    soum.metadata = processSection(soumRow, Config.metadata, 'fields');
 
     return soum;
   }
