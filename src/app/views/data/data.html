@@ -4,14 +4,18 @@
   </div>
   <main>
     <div class="container">
-      <a ui-sref="map" class="pull-right"><i class="icon-arrow-left"></i> Back to Map</a>
-      <h1 class="h5 font-alt text-uppercase">Mongolia, {{ $ctrl.soum.metadata.aimag_name.value }}, {{ $ctrl.soum.metadata.soum_name.value }}</h1>
+      <a ui-sref="map" class="pull-right">
+        <i class="icon-arrow-left"></i><span translate="DATA_BACK_TO_MAP"></span>
+      </a>
+      <h1 class="h5 font-alt text-uppercase" translate="DATA_SOUM_HIERARCHY"
+      translate-values="{soum_name: $ctrl.soum.metadata.soum_name.value,
+                         aimag_name: $ctrl.soum.metadata.aimag_name.value}"></h1>
     </div>
 
     <!-- PEOPLE Section -->
     <section>
       <div class="container">
-        <h2>PEOPLE</h2>
+        <h2 class="text-uppercase" translate="PEOPLE_HEADER"></h2>
         <div class="flex-grid">
           <adb-infoblock-view variable="$ctrl.soum.people.pop14" class="panel half"></adb-infoblock-view>
           <adb-infoblock-view variable="$ctrl.soum.people.pchn9514" class="panel half"></adb-infoblock-view>
@@ -28,7 +32,7 @@
     <!-- HOUSEHOLDS Section -->
     <section>
       <div class="container">
-        <h2>HOUSEHOLDS</h2>
+        <h2 class="text-uppercase" translate="HOUSEHOLDS_HEADER"></h2>
         <div class="flex-grid">
           <adb-infoblock-view variable="$ctrl.soum.households.hh14" class="panel half"></adb-infoblock-view>
           <adb-infoblock-view variable="$ctrl.soum.households.chnhh614" class="panel half"></adb-infoblock-view>
@@ -45,7 +49,7 @@
     <!-- ECONOMY Section -->
     <section>
       <div class="container">
-        <h2>ECONOMY</h2>
+        <h2 class="text-uppercase" translate="ECONOMY_HEADER"></h2>
         <div class="flex-grid">
             <adb-infoblock-view variable="$ctrl.soum.economy.ent14" class="panel third"></adb-infoblock-view>
             <adb-infoblock-view variable="$ctrl.soum.economy.ent0014" class="panel third"></adb-infoblock-view>
@@ -64,7 +68,7 @@
     <!-- INFRASTRUCTURE Section -->
     <section>
       <div class="container">
-        <h2>INFRASTRUCTURE &amp; HOUSING</h2>
+        <h2 class="text-uppercase" translate="INFRASTRUCTURE_HEADER_LONG"></h2>
         <div class="flex-grid">
           <adb-infoblock-view variable="$ctrl.soum.infrastructure.pcger10" class="panel"></adb-infoblock-view>
           <adb-infoblock-view variable="$ctrl.soum.infrastructure.pcsan10" class="panel"></adb-infoblock-view>

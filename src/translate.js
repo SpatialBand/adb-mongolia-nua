@@ -8,6 +8,6 @@ function translateConfig($translateProvider) {
   $translateProvider.translations('en', en);
   $translateProvider.translations('mn', mn);
 
-  $translateProvider.useSanitizeValueStrategy('escape');
+  $translateProvider.useSanitizeValueStrategy('escapeParameters');
   $translateProvider.preferredLanguage('en');
 }

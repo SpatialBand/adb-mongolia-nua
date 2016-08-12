@@ -6,7 +6,7 @@
          ng-click="$ctrl.tabClicked($event, key)"
          ng-repeat="(key, section) in $ctrl.config.mapSections"
          ng-class="{'active': key === $ctrl.activeTab}">
-        <span class="tab-name">{{ ::section.title }}</span>
+        <span class="tab-name" translate="{{ ::section.title }}"></span>
         <i ng-class="section.icon"></i>
       </a>
     </nav>
@@ -14,7 +14,7 @@
       <div class="tab-pane"
            ng-repeat="(key, section) in $ctrl.config.mapSections"
            ng-class="{'active': key === $ctrl.activeTab}">
-        <h4 class="tab-pane-heading">{{ ::section.title }}</h4>
+        <h4 class="tab-pane-heading" translate="{{ ::section.title }}"></h4>
         <div class="tab-pane-body">
           <div class="layer-selector">
             <a class="layer-toggle"
@@ -22,7 +22,7 @@
                ng-click="$ctrl.onVisSelected(vis)"
                ng-class="{'active': $ctrl.activeVis.id === vis.id}">
               <span class="layer-toggle-indicator"></span>
-              {{ ::vis.title }}
+              <span translate="{{ ::vis.title }}"></span>
             </a>
           </div>
         </div>
