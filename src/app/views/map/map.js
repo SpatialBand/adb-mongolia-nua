@@ -1,4 +1,5 @@
 const cartodb = require('cartodb');
+const L = require('leaflet');
 
 import {ADBMapController} from '../../adb-map.controller';
 
@@ -42,6 +43,7 @@ class MapViewController extends ADBMapController {
     return cartodb.createLayer(this.map, url, {https: true})
       .addTo(this.map)
       .done(layer => {
+        layer.setZIndex(10);
         this.activeLayer = layer;
       });
   }
@@ -49,8 +51,42 @@ class MapViewController extends ADBMapController {
   _setupMap(options) {
     super._setupMap(options);
 
+    this._setupMapControls(options);
+
+    // Activate the default visualization
     const peopleSection = this.config.mapSections.people;
     this._setActiveVis(peopleSection.visualizations[0]);
+  }
+
+  _setupMapControls(options) {
+    const basemaps = {};
+    for (const basemap of options.basemaps.alternative) {
+      // Make a copy of the Config so we don't actually change it
+      const mapOptions = Object.create(basemap.options);
+      // Translate the attributions message
+      mapOptions.attribution = this.$filter('translate')(mapOptions.attribution);
+
+      const title = this.$filter('translate')(basemap.title);
+      basemaps[title] = L.tileLayer(basemap.url, mapOptions);
+    }
+
+    const defaultBasemap = this.$filter('translate')(options.basemaps.default.title);
+    basemaps[defaultBasemap] = this.basemap;
+
+    const layerControl = L.control.layers(basemaps, {}, {
+      position: "topleft", collapsed: false, autoZIndex: false});
+
+    for (const overlay of options.overlays) {
+      const url = this._visUrlForId(overlay.id);
+      cartodb.createLayer(this.map, url, {https: true})
+        .done(layer => {
+          layer.setZIndex(overlay.zIndex);
+          const title = this.$filter('translate')(overlay.title);
+          layerControl.addOverlay(layer, title);
+        });
+    }
+
+    this.map.addControl(layerControl);
   }
 
   _visUrlForId(visId) {

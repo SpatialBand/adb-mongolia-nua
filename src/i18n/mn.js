@@ -60,6 +60,10 @@ export const mn = {
   MAP_VIZ_INFR_INDOOR_SANITATION_PCT: '!% of Population with Indoor Sanitation 2010',
   MAP_VIZ_INFR_PIPED_WATER_PCT: '!% of Population with Access to Piped Water 2010',
   MAP_VIZ_INFR_SOLID_WASTE_DISPOSAL_PCT: '!% of Population with Organized Solid Waste Disposal 2010',
-  MAP_VIZ_INFR_INTERNET_ACCESS_PCT: '!% of Population with Access to Internet 2010'
-
+  MAP_VIZ_INFR_INTERNET_ACCESS_PCT: '!% of Population with Access to Internet 2010',
+  MAP_POSITRON_TITLE: '!Default',
+  MAP_DARK_MATTER_TITLE: '!Dark Matter',
+  MAP_ROADWAYS_TITLE: '!Show roadways',
+  MAP_CLUSTERS_TITLE: '!Show regional clusters',
+  MAP_SETTLEMENTS_TITLE: '!Show major settelemnts'
 };

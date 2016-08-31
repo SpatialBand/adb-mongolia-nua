@@ -14,7 +14,7 @@ export class ADBMapController {
 
   _setupMap(options) {
     const view = options.view;
-    const basemap = options.basemap;
+    const basemap = options.basemaps.default;
     // Make a copy of the Config so we don't actually change it
     const mapOptions = Object.create(basemap.options);
     // Translate the attributions message
