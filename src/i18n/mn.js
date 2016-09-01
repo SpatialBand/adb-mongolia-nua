@@ -39,6 +39,8 @@ export const mn = {
   DATA_BACK_TO_MAP: '!Back to Map',
 
   MAP_OSM_ATTRIBUTION: '!&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+  MAP_ARCGIS_WORLD_IMAGERY_ATTRIBUTION: '!Source: Esri, DigitalGlobe, GeoEye, Earthstar Geographics, CNES/Airbus DS, USDA, USGS, AEX, Getmapping, Aerogrid, IGN, IGP, swisstopo, and the GIS User Community',
+  MAP_ARCGIS_WORLD_TOPO_MAP_ATTRIBUTION: '!Sources: Esri, HERE, DeLorme, Intermap, increment P Corp., GEBCO, USGS, FAO, NPS, NRCAN, GeoBase, IGN, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), swisstopo, MapmyIndia, Â© OpenStreetMap contributors, and the GIS User Community',
   MAP_VIZ_POP: '!Population 2014',
   MAP_VIZ_POP_CHANGE: '!Population Change 1995-2014',
   MAP_VIZ_POP_SHARE: '!% of Mongolia\'s Pop 2014',
@@ -60,6 +62,11 @@ export const mn = {
   MAP_VIZ_INFR_INDOOR_SANITATION_PCT: '!% of Population with Indoor Sanitation 2010',
   MAP_VIZ_INFR_PIPED_WATER_PCT: '!% of Population with Access to Piped Water 2010',
   MAP_VIZ_INFR_SOLID_WASTE_DISPOSAL_PCT: '!% of Population with Organized Solid Waste Disposal 2010',
-  MAP_VIZ_INFR_INTERNET_ACCESS_PCT: '!% of Population with Access to Internet 2010'
-
+  MAP_VIZ_INFR_INTERNET_ACCESS_PCT: '!% of Population with Access to Internet 2010',
+  MAP_DEFAULT_TITLE: '!Default',
+  MAP_ARCGIS_WORLD_TOPO_MAP_TITLE: '!Topographical',
+  MAP_ARCGIS_WORLD_IMAGERY_TITLE: '!Satelite',
+  MAP_ROADWAYS_TITLE: '!Show roadways',
+  MAP_CLUSTERS_TITLE: '!Show regional clusters',
+  MAP_SETTLEMENTS_TITLE: '!Show major settelemnts'
 };
