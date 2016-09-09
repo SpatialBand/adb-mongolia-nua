@@ -1,3 +1,49 @@
 footer {
-	
+
+  @media (max-width: 910px) {
+    text-align: center;
+  }
+
+  .panel {
+    padding: 30px;
+
+    .brand {
+      position: relative;
+      margin-top: -7px;
+    }
+  }
+
+  nav {
+    float: right;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 12px;
+
+    @media (max-width: 910px) {
+      float: none;
+    }
+
+    a {
+      padding: 20px;
+      letter-spacing: 3px;
+      font-size: 18px;
+    }
+  }
+
+  .credits {
+    display: block;
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+
+    li {
+      display: inline-block;
+      color: #AFB0B5;
+      font-size: 14px;
+
+      + li {
+        margin-left: 20px;
+      }
+    }
+  }
 }

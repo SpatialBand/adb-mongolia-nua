@@ -56,3 +56,55 @@
   height: 40rem;
   margin-bottom: 4rem;
 }
+
+/* 
+ * Leaflet hover effect
+ */
+.leaflet-top.leaflet-left .leaflet-control-layers {
+  min-width: 45px;
+  min-height: 40px;
+
+  &:after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000000;
+
+    content: '\E80D';
+    font-family: "fontello";
+    font-style: normal;
+    font-weight: normal;
+    speak: none;
+    display: inline-block;
+    text-decoration: inherit;
+    text-align: center;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  form.leaflet-control-layers-list {
+    display: none;
+  }
+
+  &:hover {
+
+    &:after {
+      display: none;
+    }
+
+    form.leaflet-control-layers-list {
+      display: block;
+    }
+  }
+}
+
+@media (max-width: 728px) {
+  #map {
+    position: relative;
+    min-height: 400px;
+    cursor: auto;
+  }
+}
