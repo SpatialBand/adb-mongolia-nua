@@ -15,6 +15,14 @@
   display: flex;
   bottom: 0;
   width: 100%;
+
+  @media (max-width: 728px) {
+    position: relative;
+    top: initial;
+    height: auto;
+    bottom: initial;
+    display: block;
+  }
 }
 
 .data-container {

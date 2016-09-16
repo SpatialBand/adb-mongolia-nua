@@ -1,7 +1,13 @@
 .tabs {
-  border-right: 1px solid #ddd;
+  border-right: 1px solid $navy;
   position: relative;
   z-index: 1;
+
+  @media (max-width: 728px) {
+    @extend .clearfix;
+    border: none;
+    border-bottom: 1px solid $navy;
+  }
 }
 
 .tab {
@@ -20,15 +26,20 @@
   }
 
   &.active {
-    color: $brand-primary;
-    background: $border-color;
+    color: $border-color;
+    background: $brand-primary;
+  }
+
+  @media (max-width: 728px) {
+    float: left;
+    width: 25%;
   }
 }
 
 .tab-name {
   position: absolute;
   width: auto;
-  background: $brand-primary;
+  background: $navy;
   color: #fff;
   font-size: 1.4rem;
   padding: 1rem;
@@ -42,16 +53,36 @@
     content: '';
     position: absolute;
     border: 5px solid transparent;
-    border-right-color: $brand-primary;
+    border-right-color: $navy;
     left: -1rem;
     top: 50%;
     transform: translateY(-50%);
+
+    @media (max-width: 728px) {
+      border-right-color: transparent;
+      border-bottom-color: $navy;
+      top: -1rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (max-width: 728px) {
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    //margin-top: 5px;
   }
 }
 
 .tab-panes {
   flex: 1;
   overflow: auto;
+
+  @media (max-width: 728px) {
+    flex: none;
+    border-bottom: 1px solid #00256C;
+  }
 }
 
 .tab-pane {
@@ -60,6 +91,11 @@
 
   &.active {
     display: block;
+  }
+
+  @media (max-width: 728px) {
+    padding-top: 0;
+    padding-bottom: 0;
   }
 }
 

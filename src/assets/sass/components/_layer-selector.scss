@@ -11,6 +11,7 @@
     font-size: 1.4rem;
     color: $text-base;
     opacity: .5;
+    padding-left: 2rem;
 
     .layer-toggle-indicator {
       display: inline-block;
@@ -19,6 +20,7 @@
       border-radius: 100%;
       background: #ddd;
       margin-right: 1rem;
+      margin-left: -2rem;
     }
 
     &:hover {

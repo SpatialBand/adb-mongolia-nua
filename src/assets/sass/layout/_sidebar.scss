@@ -4,4 +4,10 @@
   display: flex;
   min-width: 300px;
   overflow: hidden;
+
+  @media (max-width: 728px) {
+    width: 100%;
+    display: block;
+    flex: initial;
+  }
 }
