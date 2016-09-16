@@ -94,7 +94,8 @@ class MapViewController extends ADBMapController {
 
   _setupZoomDropdown() {
     this.zoomControl = new this.ZoomToDropdown({
-      label: 'Zoom to Aimag'
+      label: this.$filter('translate')('ZOOM_TO_AIMAG_PROMPT'),
+      default: this.$filter('translate')('ZOOM_TO_AIMAG_DEFAULT')
     });
 
     this.AimagData.list().then(data => {
