@@ -3,11 +3,74 @@ const L = require('leaflet');
 
 import {ADBMapController} from '../../adb-map.controller';
 
+L.Control.ZoomToDropdown = L.Control.extend({
+  options: {
+    label: 'Select one',
+    position: 'topright',
+    choices: [{
+      label: 'Select...'
+    }]
+  },
+
+  // Using the arrow shorthand clobbers "this", so we need to use the old way
+  onAdd: function (map) {
+    this.map = map;
+
+    const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
+    const label = L.DomUtil.create('label', '', container);
+    this.dropdown = L.DomUtil.create('select', '', container);
+
+    this._reflowChoices();
+
+    label.innerHTML = this.options.label;
+
+    return container;
+  },
+
+  setChoices: function (choices) {
+    this.options.choices = choices;
+    this._reflowChoices();
+  },
+
+  _reflowChoices: function () {
+    if (!this.dropdown) {
+      return;
+    }
+    this.dropdown.removeEventListener('change', this.onSelect)
+
+    // Remove all child elements
+    while (this.dropdown.firstChild) {
+      this.dropdown.removeChild(this.dropdown.firstChild);
+    }
+
+    // Add the choices as options id'd by the key
+    for (let i = 0; i < this.options.choices.length; i++) {
+      const choice = this.options.choices[i];
+      const option = L.DomUtil.create('option', '', this.dropdown);
+      option.innerHTML = choice.label;
+      option.id = i;
+    }
+
+    // Re-add event listener
+    this.dropdown.addEventListener('change', this.onSelect.bind(this));
+  },
+
+  onSelect: function (event) {
+    const key = this.dropdown.options[this.dropdown.selectedIndex].id;
+    if (this.options.choices[key].the_geom) {
+      const geojson = JSON.parse(this.options.choices[key].the_geom)
+      const geometry = L.geoJson(geojson);
+      this.map.fitBounds(geometry);
+    }
+  }
+});
+
 class MapViewController extends ADBMapController {
   /** @ngInject */
-  constructor($filter, $log, Config) {
+  constructor($filter, $log, AimagData, Config) {
     super($filter, Config, 'map');
     this.$log = $log;
+    this.AimagData = AimagData;
   }
 
   $onInit() {
@@ -52,6 +115,7 @@ class MapViewController extends ADBMapController {
     super._setupMap(options);
 
     this._setupMapControls(options);
+    this._setupZoomDropdown(options);
 
     // Activate the default visualization
     const peopleSection = this.config.mapSections.people;
@@ -87,6 +151,16 @@ class MapViewController extends ADBMapController {
     }
 
     this.map.addControl(layerControl);
+  }
+
+  _setupZoomDropdown() {
+    this.zoomControl = new L.Control.ZoomToDropdown();
+
+    this.AimagData.list().then(data => {
+      this.zoomControl.setChoices(data.rows);
+    });
+
+    this.map.addControl(this.zoomControl);
   }
 
   _visUrlForId(visId) {
