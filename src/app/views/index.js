@@ -9,12 +9,13 @@ import {adbInfoblockView} from './infoblock/infoblock';
 import {appConfig} from '../../config';
 import {adbLangModule} from '../i18n/index';
 import {adbServicesModule} from '../services/index';
+import {adbFactoriesModule} from '../factories/index';
 import {adbFiltersModule} from '../filters/index';
 
 export const adbViewModule = 'adb.views';
 
 angular
-  .module(adbViewModule, [appConfig, adbLangModule, adbServicesModule, adbFiltersModule])
+  .module(adbViewModule, [appConfig, adbLangModule, adbServicesModule, adbFiltersModule, adbFactoriesModule])
   .component('adbNavbarView', adbNavbarView)
   .component('adbHomeView', adbHomeView)
   .component('adbMapView', adbMapView)
