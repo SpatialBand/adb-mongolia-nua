@@ -5,9 +5,11 @@ import {ADBMapController} from '../../adb-map.controller';
 
 class MapViewController extends ADBMapController {
   /** @ngInject */
-  constructor($filter, $log, Config) {
+  constructor($filter, $log, AimagData, Config, ZoomToDropdown) {
     super($filter, Config, 'map');
     this.$log = $log;
+    this.AimagData = AimagData;
+    this.ZoomToDropdown = ZoomToDropdown;
   }
 
   $onInit() {
@@ -52,6 +54,7 @@ class MapViewController extends ADBMapController {
     super._setupMap(options);
 
     this._setupMapControls(options);
+    this._setupZoomDropdown(options);
 
     // Activate the default visualization
     const peopleSection = this.config.mapSections.people;
@@ -87,6 +90,19 @@ class MapViewController extends ADBMapController {
     }
 
     this.map.addControl(layerControl);
+  }
+
+  _setupZoomDropdown() {
+    this.zoomControl = new this.ZoomToDropdown({
+      label: this.$filter('translate')('ZOOM_TO_AIMAG_PROMPT'),
+      default: this.$filter('translate')('ZOOM_TO_AIMAG_DEFAULT')
+    });
+
+    this.AimagData.list().then(data => {
+      this.zoomControl.setChoices(data.rows);
+    });
+
+    this.map.addControl(this.zoomControl);
   }
 
   _visUrlForId(visId) {

@@ -68,5 +68,7 @@ export const mn = {
   MAP_ARCGIS_WORLD_IMAGERY_TITLE: '!Satelite',
   MAP_ROADWAYS_TITLE: '!Show roadways',
   MAP_CLUSTERS_TITLE: '!Show regional clusters',
-  MAP_SETTLEMENTS_TITLE: '!Show major settelemnts'
+  MAP_SETTLEMENTS_TITLE: '!Show major settelemnts',
+  ZOOM_TO_AIMAG_PROMPT: '!Zoom to Aimag',
+  ZOOM_TO_AIMAG_DEFAULT: '!Zoom to...'
 };
