@@ -4,7 +4,8 @@ const cartodb = require('cartodb');
 export function SoumData($log, $http, $q, Config) {
   return {
     geojson,
-    load
+    load,
+    compare
   };
 
   function geojson(soumId) {
@@ -31,6 +32,18 @@ export function SoumData($log, $http, $q, Config) {
       // Done!
       return soum;
     });
+  }
+
+  function compare(column) {
+    // Given a soumId return the geojson boundary for it
+    // Wrap in angular promise so we're consistent with the types of promises we're
+    //  using in public APIs
+    const dfd = $q.defer();
+    const sql = new cartodb.SQL({user: Config.carto.accountName});
+    sql.execute(`SELECT {{column}} FROM soums`, {column})
+      .done(data => dfd.resolve(data))
+      .error(error => dfd.reject(error));
+    return dfd.promise;
   }
 
   function mergeResponses(responses) {

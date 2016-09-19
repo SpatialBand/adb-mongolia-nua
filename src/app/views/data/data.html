@@ -21,6 +21,22 @@
           <adb-infoblock-view variable="$ctrl.soum.people.pchn9514" class="panel half"></adb-infoblock-view>
         </div>
         <div class="flex-grid">
+          <div class="panel histogram">
+            <div class="panel-content text-center">
+              <p class="font-alt color-light text-uppercase" translate="{{ $ctrl.soum.people[$ctrl.charts.fields.people].title }}"></p>
+              <adb-histogram
+                plot-height="$ctrl.charts.height"
+                plot-width="$ctrl.charts.width"
+                data="$ctrl.charts.data"
+                callout-values="[$ctrl.soum.people[$ctrl.charts.fields.people].value]"
+                callout-colors="$ctrl.charts.calloutColors"
+                value-field="$ctrl.charts.fields.people"
+                allow-redraw="true">
+              </adb-histogram>
+            </div>
+          </div>
+        </div>
+        <div class="flex-grid">
           <adb-infoblock-view variable="$ctrl.soum.people.sh14" class="panel third"></adb-infoblock-view>
           <adb-infoblock-view variable="$ctrl.soum.people.shch9514" class="panel third"></adb-infoblock-view>
           <adb-infoblock-view variable="$ctrl.soum.people.den14" class="panel third"></adb-infoblock-view>
@@ -36,6 +52,22 @@
         <div class="flex-grid">
           <adb-infoblock-view variable="$ctrl.soum.households.hh14" class="panel half"></adb-infoblock-view>
           <adb-infoblock-view variable="$ctrl.soum.households.chnhh614" class="panel half"></adb-infoblock-view>
+        </div>
+        <div class="flex-grid">
+          <div class="panel histogram">
+            <div class="panel-content text-center">
+              <p class="font-alt color-light text-uppercase" translate="{{ $ctrl.soum.households[$ctrl.charts.fields.households].title }}"></p>
+              <adb-histogram
+                plot-height="$ctrl.charts.height"
+                plot-width="$ctrl.charts.width"
+                data="$ctrl.charts.data"
+                callout-values="[$ctrl.soum.households[$ctrl.charts.fields.households].value]"
+                callout-colors="$ctrl.charts.calloutColors"
+                value-field="$ctrl.charts.fields.households"
+                allow-redraw="true">
+              </adb-histogram>
+            </div>
+          </div>
         </div>
         <div class="flex-grid">
           <adb-infoblock-view variable="$ctrl.soum.households.hhh14" class="panel third"></adb-infoblock-view>
@@ -56,6 +88,22 @@
             <adb-infoblock-view variable="$ctrl.soum.economy.sdi" class="panel third"></adb-infoblock-view>
         </div>
         <div class="flex-grid">
+          <div class="panel histogram">
+            <div class="panel-content text-center">
+              <p class="font-alt color-light text-uppercase" translate="{{ $ctrl.soum.economy[$ctrl.charts.fields.economy].title }}"></p>
+              <adb-histogram
+                plot-height="$ctrl.charts.height"
+                plot-width="$ctrl.charts.width"
+                data="$ctrl.charts.data"
+                callout-values="[$ctrl.soum.economy[$ctrl.charts.fields.economy].value]"
+                callout-colors="$ctrl.charts.calloutColors"
+                value-field="$ctrl.charts.fields.economy"
+                allow-redraw="true">
+              </adb-histogram>
+            </div>
+          </div>
+        </div>
+        <div class="flex-grid">
           <adb-infoblock-view variable="$ctrl.soum.economy.man14" class="panel"></adb-infoblock-view>
           <adb-infoblock-view variable="$ctrl.soum.economy.chman0014" class="panel"></adb-infoblock-view>
           <!-- <adb-infoblock-view variable="$ctrl.soum.economy.pcpov11" class="panel"></adb-infoblock-view> -->
@@ -73,6 +121,22 @@
           <adb-infoblock-view variable="$ctrl.soum.infrastructure.pcger10" class="panel"></adb-infoblock-view>
           <adb-infoblock-view variable="$ctrl.soum.infrastructure.pcsan10" class="panel"></adb-infoblock-view>
           <adb-infoblock-view variable="$ctrl.soum.infrastructure.pcwat10" class="panel"></adb-infoblock-view>
+        </div>
+        <div class="flex-grid">
+          <div class="panel histogram">
+            <div class="panel-content text-center">
+              <p class="font-alt color-light text-uppercase" translate="{{ $ctrl.soum.infrastructure[$ctrl.charts.fields.infrastructure].title }}"></p>
+              <adb-histogram
+                plot-height="$ctrl.charts.height"
+                plot-width="$ctrl.charts.width"
+                data="$ctrl.charts.data"
+                callout-values="[$ctrl.soum.infrastructure[$ctrl.charts.fields.infrastructure].value]"
+                callout-colors="$ctrl.charts.calloutColors"
+                value-field="$ctrl.charts.fields.infrastructure"
+                allow-redraw="true">
+              </adb-histogram>
+            </div>
+          </div>
         </div>
         <div class="flex-grid">
           <adb-infoblock-view variable="$ctrl.soum.infrastructure.pcsw10" class="panel"></adb-infoblock-view>
