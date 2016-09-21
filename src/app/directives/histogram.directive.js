@@ -3,7 +3,8 @@ export const HistogramDefaults = {
   plotWidthPercentage: 0.8,
   barRadius: 1,
   transitionMillis: 500,
-  lazyLoad: false
+  lazyLoad: false,
+  chartColor: '#000000'
 };
 
 export function HistogramDirective($log, HistogramDefaults, d3, _) {
@@ -28,6 +29,7 @@ export function HistogramDirective($log, HistogramDefaults, d3, _) {
       margin: '&',
       calloutValues: '<',
       calloutColors: '<',
+      chartColor: '&',
       transitionMillis: '@',
       allowRedraw: '@',
       lazyLoad: '@'
@@ -103,7 +105,8 @@ export function HistogramDirective($log, HistogramDefaults, d3, _) {
           .range([height, 30]);
         // KDEstimator with probability distribution tapering out with a bandwidth of 0.2
         // with the epanechnikov kernel function
-        const kde = kernelDensityEstimator(epanechnikovKernel(1), xKDE.ticks(100));
+        const bins = buckets(minValue, maxValue, 100);
+        const kde = kernelDensityEstimator(epanechnikovKernel(1), bins);
         const estimate = kde(data); // Estimated density
 
         // Plot KDE and callouts
@@ -118,7 +121,8 @@ export function HistogramDirective($log, HistogramDefaults, d3, _) {
         chart.append('path') // Plot area for KDE
           .datum(estimate)
           .attr('class', 'kde plot')
-          .attr('d', plotArea);
+          .attr('d', plotArea)
+          .attr('fill', $scope.chartColor);
         if (calloutValues) {
           for (let i = 0; i < calloutValues.length; i++) {
             if (calloutValues[i] !== null) { // Don't plot null vals - null is not 0
@@ -140,6 +144,11 @@ export function HistogramDirective($log, HistogramDefaults, d3, _) {
         });
         console.log('Data:', data);
          */
+
+         function buckets(min, max, count) {
+           const delta = (max - min) / (count-1);
+           return _.map(_.range(count), i => min + delta * i);
+         }
 
         function kernelDensityEstimator(kernel, x) {
           return sample => {

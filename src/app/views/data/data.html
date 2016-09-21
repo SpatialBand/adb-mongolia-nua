@@ -28,9 +28,10 @@
                 plot-height="$ctrl.charts.height"
                 plot-width="$ctrl.charts.width"
                 data="$ctrl.charts.data"
-                callout-values="[$ctrl.soum.people[$ctrl.charts.fields.people].value]"
+                callout-values="$ctrl.charts.calloutValues.people"
                 callout-colors="$ctrl.charts.calloutColors"
                 value-field="$ctrl.charts.fields.people"
+                chart-color="$ctrl.charts.color"
                 allow-redraw="true">
               </adb-histogram>
             </div>
@@ -61,9 +62,10 @@
                 plot-height="$ctrl.charts.height"
                 plot-width="$ctrl.charts.width"
                 data="$ctrl.charts.data"
-                callout-values="[$ctrl.soum.households[$ctrl.charts.fields.households].value]"
+                callout-values="$ctrl.charts.calloutValues.households"
                 callout-colors="$ctrl.charts.calloutColors"
                 value-field="$ctrl.charts.fields.households"
+                chart-color="$ctrl.charts.color"
                 allow-redraw="true">
               </adb-histogram>
             </div>
@@ -95,9 +97,10 @@
                 plot-height="$ctrl.charts.height"
                 plot-width="$ctrl.charts.width"
                 data="$ctrl.charts.data"
-                callout-values="[$ctrl.soum.economy[$ctrl.charts.fields.economy].value]"
+                callout-values="$ctrl.charts.calloutValues.economy"
                 callout-colors="$ctrl.charts.calloutColors"
                 value-field="$ctrl.charts.fields.economy"
+                chart-color="$ctrl.charts.color"
                 allow-redraw="true">
               </adb-histogram>
             </div>
@@ -130,9 +133,10 @@
                 plot-height="$ctrl.charts.height"
                 plot-width="$ctrl.charts.width"
                 data="$ctrl.charts.data"
-                callout-values="[$ctrl.soum.infrastructure[$ctrl.charts.fields.infrastructure].value]"
+                callout-values="$ctrl.charts.calloutValues.infrastructure"
                 callout-colors="$ctrl.charts.calloutColors"
                 value-field="$ctrl.charts.fields.infrastructure"
+                chart-color="$ctrl.charts.color"
                 allow-redraw="true">
               </adb-histogram>
             </div>

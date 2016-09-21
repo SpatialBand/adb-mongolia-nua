@@ -194,6 +194,22 @@ const config = {
         isPercent: true
       }]
     }
+  },
+  charts: {
+    fields: {
+      people: 'den14',
+      households: 'hh14',
+      economy: 'ent14',
+      infrastructure: 'pcwat10'
+    },
+    height: 300,
+    width: undefined, // Width is dynamically detected from page state
+    calloutColors: [ // Callouts are the vertical bars representing specific values
+      '#FF0000', // Country
+      '#00FF00', // Region
+      '#0000FF'  // Soum
+    ],
+    color: '#FFFF00'
   }
 };
 

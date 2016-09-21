@@ -18,22 +18,11 @@ class DataViewController extends ADBMapController {
   $onInit() {
     super.$onInit();
 
-    this.charts = {
-      fields: {
-        people: 'den14',
-        households: 'hh14',
-        economy: 'ent14',
-        infrastructure: 'pcwat10'
-      },
-      height: 300,
-      width: undefined,
-      data: undefined,
-      calloutColors: ['#8FBD84']
-    };
+    this.charts = this.config.charts;
 
     angular.element(this.$window).bind('resize', this._onResize.bind(this));
 
-    this.soumCode = this.$stateParams.soumCode;
+    this.soumCode = Number.parseInt(this.$stateParams.soumCode, 10);
     this.$log.debug('soum code:', this.soumCode);
 
     this.soumData.geojson(this.soumCode).then(geojson => this._addGeoJSONLayer(geojson));
@@ -45,7 +34,7 @@ class DataViewController extends ADBMapController {
       compareColumns.push(field);
     }
 
-    this.soumData.compare(compareColumns).then(data => this.charts.data = data.rows); // eslint-disable-line no-return-assign
+    this.soumData.compare(this.soumCode, compareColumns).then(data => this._setChartData(data));
 
     // Simulate a resize to get initial widths for the histograms
     this._onResize();
@@ -63,6 +52,15 @@ class DataViewController extends ADBMapController {
   _onResize() {
     this.charts.width = document.querySelectorAll(".histogram .panel-content p")[0].clientWidth;
     this.$timeout(() => this.$scope.$apply());
+  }
+
+  _setChartData(data) {
+    this.charts.data = data.rows;
+    this.charts.calloutValues = {};
+    for (const field of Object.keys(this.charts.fields)) {
+      const column = this.charts.fields[field];
+      this.charts.calloutValues[field] = data.comparison[column];
+    }
   }
 }
 
