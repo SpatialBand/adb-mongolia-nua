@@ -5,12 +5,13 @@ const L = require('leaflet');
 class DataViewController extends ADBMapController {
 
   /** @ngInject */
-  constructor($window, $filter, $log, $scope, $stateParams, Config, SoumData) {
+  constructor($window, $filter, $log, $scope, $stateParams, $timeout, $q, Config, SoumData) {
     super($filter, Config, 'dataMap');
     this.$log = $log;
     this.$scope = $scope;
     this.$stateParams = $stateParams;
     this.soumData = SoumData;
+    this.$timeout = $timeout;
     this.$window = $window;
   }
 
@@ -61,7 +62,7 @@ class DataViewController extends ADBMapController {
 
   _onResize() {
     this.charts.width = document.querySelectorAll(".histogram .panel-content p")[0].clientWidth;
-    this.$scope.$apply();
+    this.$timeout(() => this.$scope.$apply());
   }
 }
 
