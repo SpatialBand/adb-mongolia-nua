@@ -1,3 +1,5 @@
+import angular from 'angular';
+
 // Define object config of properties for this chart directive
 export const HistogramDefaults = {
   plotWidthPercentage: 0.8,
@@ -16,7 +18,13 @@ export function HistogramDirective($log, HistogramDefaults, d3, _) {
   // Begin directive module definition
   const module = {
     restrict: 'EA',
-    template: '<svg class="chart"></svg>',
+    template: ['<svg class="chart"></svg><ul class="legend">',
+               '<li ng-repeat="callout in callouts" ng-if="isNumber(callout.value[valueField])"',
+                  'class="bullet-{{callout.type}}">',
+                  '<i style="background-color: {{callout.color}}"></i>',
+                  '{{callout.label|translate}}',
+                  '<em>{{callout.value[valueField]|comparatize}}</em>',
+               '</li></ul>'].join(''),
     controller: 'ChartingController',
     scope: {
       data: '<',        // Required
@@ -27,8 +35,7 @@ export function HistogramDirective($log, HistogramDefaults, d3, _) {
       barRadius: '@',
       valueField: '<',     // Required
       margin: '&',
-      calloutValues: '<',
-      calloutColors: '<',
+      callouts: '<',
       chartColor: '&',
       transitionMillis: '@',
       allowRedraw: '@',
@@ -38,10 +45,9 @@ export function HistogramDirective($log, HistogramDefaults, d3, _) {
     link: ($scope, element, attrs) => {
       $scope.setDefaultMargins(10);
       $scope.configure(HistogramDefaults);
+      $scope.isNumber = isFinite;
       const config = $scope.config;
       const margin = config.margin;
-      let calloutValues = $scope.calloutValues;
-      const calloutColors = $scope.calloutColors;
 
       // D3 margin, sizing, and spacing code
       element.addClass(PLOT_CLASS);
@@ -57,8 +63,7 @@ export function HistogramDirective($log, HistogramDefaults, d3, _) {
         .append('g')
         .attr('transform', `translate(${margin.left},${margin.top})`);
 
-      $scope.$watch('calloutValues', newValue => {
-        calloutValues = newValue;
+      $scope.$watch('calloutValues', () => {
         $scope.redraw($scope.data);
       });
 
@@ -81,11 +86,10 @@ export function HistogramDirective($log, HistogramDefaults, d3, _) {
 
         // Filter values < 1 for log scale
         data = _.chain(data) // Filter out less than 1 and return the log10 of values
-          .filter(row => {
-            return row[$scope.valueField] >= 1;
-          }).map(d => {
-            return Math.log(d[$scope.valueField]) / Math.log(10);
-          }).value();
+          .map($scope.valueField)
+          .map(v => (v < 1) ? 1 : v)
+          .map(v => Math.log(v) / Math.log(10))
+          .value();
 
         if (data.length === 0) {
           return;
@@ -123,15 +127,17 @@ export function HistogramDirective($log, HistogramDefaults, d3, _) {
           .attr('class', 'kde plot')
           .attr('d', plotArea)
           .attr('fill', $scope.chartColor);
-        if (calloutValues) {
-          for (let i = 0; i < calloutValues.length; i++) {
-            if (calloutValues[i] !== null) { // Don't plot null vals - null is not 0
+        if ($scope.callouts) {
+          for (let i = 0; i < $scope.callouts.length; i++) {
+            const callout = $scope.callouts[i];
+            const value = callout.value[$scope.valueField];
+            if (isFinite(value)) { // Don't plot null vals - null is not 0
               chart.append('rect') // Callouts - minValue is used for cases below 1 to avoid negInfinity on log10
-                .attr('x', xKDE(calloutValues[i] >= 1 ? Math.log(calloutValues[i]) / Math.log(10) : minValue))
+                .attr('x', xKDE(value >= 1 ? Math.log(value) / Math.log(10) : minValue))
                 .attr('y', 0)
                 .attr('height', height)
                 .attr('width', '2px')
-                .attr('fill', calloutColors[i] || defaultColor);
+                .attr('fill', callout.color || defaultColor);
             }
           }
         }
@@ -145,10 +151,10 @@ export function HistogramDirective($log, HistogramDefaults, d3, _) {
         console.log('Data:', data);
          */
 
-         function buckets(min, max, count) {
-           const delta = (max - min) / (count-1);
-           return _.map(_.range(count), i => min + delta * i);
-         }
+        function buckets(min, max, count) {
+          const delta = (max - min) / (count - 1);
+          return _.map(_.range(count), i => min + delta * i);
+        }
 
         function kernelDensityEstimator(kernel, x) {
           return sample => {

@@ -1,4 +1,5 @@
 import {ADBMapController} from '../../adb-map.controller';
+import angular from 'angular';
 
 const L = require('leaflet');
 
@@ -13,12 +14,16 @@ class DataViewController extends ADBMapController {
     this.soumData = SoumData;
     this.$timeout = $timeout;
     this.$window = $window;
+    this.$q = $q;
   }
 
   $onInit() {
     super.$onInit();
 
+    // Initialize the histogram charts configuration
     this.charts = this.config.charts;
+    this.charts.calloutList = [];
+    this.charts.data = [];
 
     angular.element(this.$window).bind('resize', this._onResize.bind(this));
 
@@ -26,15 +31,17 @@ class DataViewController extends ADBMapController {
     this.$log.debug('soum code:', this.soumCode);
 
     this.soumData.geojson(this.soumCode).then(geojson => this._addGeoJSONLayer(geojson));
-    this.soumData.load(this.soumCode).then(soum => this.soum = soum); // eslint-disable-line no-return-assign
+    const soumPromise = this.soumData.load(this.soumCode).then(soum => this.soum = soum); // eslint-disable-line no-return-assign
 
     const compareColumns = [];
-    for (const type of Object.keys(this.charts.fields)) {
-      const field = this.charts.fields[type];
+    for (const type of Object.keys(this.charts.histograms)) {
+      const field = this.charts.histograms[type].field;
       compareColumns.push(field);
     }
 
-    this.soumData.compare(this.soumCode, compareColumns).then(data => this._setChartData(data));
+    const comparePromise = this.soumData.compare(this.soumCode, compareColumns);
+
+    this.$q.all([soumPromise, comparePromise]).then(results => this._setChartData(results));
 
     // Simulate a resize to get initial widths for the histograms
     this._onResize();
@@ -54,12 +61,18 @@ class DataViewController extends ADBMapController {
     this.$timeout(() => this.$scope.$apply());
   }
 
-  _setChartData(data) {
+  _setChartData(results) {
+    const soum = results[0];
+    const data = results[1];
     this.charts.data = data.rows;
-    this.charts.calloutValues = {};
-    for (const field of Object.keys(this.charts.fields)) {
-      const column = this.charts.fields[field];
-      this.charts.calloutValues[field] = data.comparison[column];
+    this.charts.callouts.soum.label = soum.metadata.soum_name.value;
+
+    this.charts.calloutList = [];
+    for (const type of Object.keys(this.charts.callouts)) {
+      const callout = this.charts.callouts[type];
+      callout.value = data.comparison[type];
+
+      this.charts.calloutList.push(callout);
     }
   }
 }

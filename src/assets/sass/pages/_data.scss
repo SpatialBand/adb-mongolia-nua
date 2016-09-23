@@ -1,0 +1,16 @@
+adb-histogram .legend {
+  display: flex;
+  list-style: none;
+
+  i:before {
+    content: "+";
+  }
+
+  em:before {
+    content: " - ";
+  }
+
+  li {
+    margin: 5px;
+  }
+}

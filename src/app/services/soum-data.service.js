@@ -56,24 +56,22 @@ export function SoumData($log, $http, $q, Config, _) {
   }
 
   function _parseCompare(data, soumId, columns) {
-    const comparison = {};
-
     const rows = data.rows;
-
     const soumRow = _.find(rows, {soumcode: soumId});
+
+    const comparison = {
+      country: {},
+      cluster: {},
+      soum: soumRow
+    };
+
     for (const column of columns) {
       const colData = _.map(rows, column);
       const clusterRows = _.filter(rows, {neighbor: true});
       const clusterData = _.map(clusterRows, column);
 
-      const soumVal = soumRow[column];
-      const regionAvg = clusterData.reduce((sum, val) => sum + val, 0) / clusterData.length;
-      const countryAvg = colData.reduce((sum, val) => sum + val, 0) / colData.length;
-      comparison[column] = [
-        countryAvg,
-        regionAvg,
-        soumVal
-      ];
+      comparison.country[column] = colData.reduce((sum, val) => sum + val, 0) / colData.length;
+      comparison.cluster[column] = clusterData.reduce((sum, val) => sum + val, 0) / clusterData.length;
     }
     return {rows, comparison};
   }
