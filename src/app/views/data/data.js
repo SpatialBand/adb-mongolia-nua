@@ -23,7 +23,7 @@ class DataViewController extends ADBMapController {
     // Initialize the histogram charts configuration
     this.charts = this.config.charts;
     this.charts.calloutList = [];
-    this.charts.data = [];
+    this.charts.data = undefined;
 
     angular.element(this.$window).bind('resize', this._onResize.bind(this));
 
