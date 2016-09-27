@@ -21,6 +21,27 @@
           <adb-infoblock-view variable="$ctrl.soum.people.pchn9514" class="panel half"></adb-infoblock-view>
         </div>
         <div class="flex-grid">
+          <div class="panel histogram">
+            <div class="panel-content text-center">
+              <p class="font-alt color-light text-uppercase" translate="{{ $ctrl.charts.histograms.people.title }}"></p>
+              <div class="spinner" ng-if="!$ctrl.charts.data">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+              </div>
+              <adb-histogram
+                ng-if="$ctrl.charts.data"
+                plot-height="$ctrl.charts.height"
+                plot-width="$ctrl.charts.width"
+                data="$ctrl.charts.data"
+                callouts="$ctrl.charts.calloutList"
+                value-field="$ctrl.charts.histograms.people.field"
+                chart-color="$ctrl.charts.fillColor"
+                allow-redraw="true">
+              </adb-histogram>
+            </div>
+          </div>
+        </div>
+        <div class="flex-grid">
           <adb-infoblock-view variable="$ctrl.soum.people.sh14" class="panel third"></adb-infoblock-view>
           <adb-infoblock-view variable="$ctrl.soum.people.shch9514" class="panel third"></adb-infoblock-view>
           <adb-infoblock-view variable="$ctrl.soum.people.den14" class="panel third"></adb-infoblock-view>
@@ -36,6 +57,27 @@
         <div class="flex-grid">
           <adb-infoblock-view variable="$ctrl.soum.households.hh14" class="panel half"></adb-infoblock-view>
           <adb-infoblock-view variable="$ctrl.soum.households.chnhh614" class="panel half"></adb-infoblock-view>
+        </div>
+        <div class="flex-grid">
+          <div class="panel histogram">
+            <div class="panel-content text-center">
+              <p class="font-alt color-light text-uppercase" translate="{{ $ctrl.charts.histograms.households.title }}"></p>
+              <div class="spinner" ng-if="!$ctrl.charts.data">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+              </div>
+              <adb-histogram
+                ng-if="$ctrl.charts.data"
+                plot-height="$ctrl.charts.height"
+                plot-width="$ctrl.charts.width"
+                data="$ctrl.charts.data"
+                callouts="$ctrl.charts.calloutList"
+                value-field="$ctrl.charts.histograms.households.field"
+                chart-color="$ctrl.charts.fillColor"
+                allow-redraw="true">
+              </adb-histogram>
+            </div>
+          </div>
         </div>
         <div class="flex-grid">
           <adb-infoblock-view variable="$ctrl.soum.households.hhh14" class="panel third"></adb-infoblock-view>
@@ -56,6 +98,27 @@
             <adb-infoblock-view variable="$ctrl.soum.economy.sdi" class="panel third"></adb-infoblock-view>
         </div>
         <div class="flex-grid">
+          <div class="panel histogram">
+            <div class="panel-content text-center">
+              <p class="font-alt color-light text-uppercase" translate="{{ $ctrl.charts.fields.economy.title }}"></p>
+              <div class="spinner" ng-if="!$ctrl.charts.data">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+              </div>
+              <adb-histogram
+                ng-if="$ctrl.charts.data"
+                plot-height="$ctrl.charts.height"
+                plot-width="$ctrl.charts.width"
+                data="$ctrl.charts.data"
+                callouts="$ctrl.charts.calloutList"
+                value-field="$ctrl.charts.histograms.economy.field"
+                chart-color="$ctrl.charts.fillColor"
+                allow-redraw="true">
+              </adb-histogram>
+            </div>
+          </div>
+        </div>
+        <div class="flex-grid">
           <adb-infoblock-view variable="$ctrl.soum.economy.man14" class="panel"></adb-infoblock-view>
           <adb-infoblock-view variable="$ctrl.soum.economy.chman0014" class="panel"></adb-infoblock-view>
           <!-- <adb-infoblock-view variable="$ctrl.soum.economy.pcpov11" class="panel"></adb-infoblock-view> -->
@@ -73,6 +136,27 @@
           <adb-infoblock-view variable="$ctrl.soum.infrastructure.pcger10" class="panel"></adb-infoblock-view>
           <adb-infoblock-view variable="$ctrl.soum.infrastructure.pcsan10" class="panel"></adb-infoblock-view>
           <adb-infoblock-view variable="$ctrl.soum.infrastructure.pcwat10" class="panel"></adb-infoblock-view>
+        </div>
+        <div class="flex-grid">
+          <div class="panel histogram">
+            <div class="panel-content text-center">
+              <p class="font-alt color-light text-uppercase" translate="{{ $ctrl.charts.fields.infrastructure.title }}"></p>
+              <div class="spinner" ng-if="!$ctrl.charts.data">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+              </div>
+              <adb-histogram
+                ng-if="$ctrl.charts.data"
+                plot-height="$ctrl.charts.height"
+                plot-width="$ctrl.charts.width"
+                data="$ctrl.charts.data"
+                callouts="$ctrl.charts.calloutList"
+                value-field="$ctrl.charts.histograms.infrastructure.field"
+                chart-color="$ctrl.charts.fillColor"
+                allow-redraw="true">
+              </adb-histogram>
+            </div>
+          </div>
         </div>
         <div class="flex-grid">
           <adb-infoblock-view variable="$ctrl.soum.infrastructure.pcsw10" class="panel"></adb-infoblock-view>

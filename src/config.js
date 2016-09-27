@@ -194,6 +194,45 @@ const config = {
         isPercent: true
       }]
     }
+  },
+  charts: {
+    histograms: {
+      people: {
+        field: 'den14',
+        title: 'HISTOGRAM_PEOPLE_TITLE'
+      },
+      households: {
+        field: 'hh14',
+        title: 'HISTOGRAM_HOUSEHOLDS_TITLE'
+      },
+      economy: {
+        field: 'ent14',
+        title: 'HISTOGRAM_ECONOMY_TITLE'
+      },
+      infrastructure: {
+        field: 'pcwat10',
+        title: 'HISTOGRAM_INFRASTRUCTURE_TITLE'
+      }
+    },
+    height: 200,
+    width: undefined, // Width is dynamically detected from page state
+    callouts: { // Callouts are the vertical bars representing specific values
+      // The country, cluster and soum keys are to match the SoumData.compare response,
+      // which gives averaged values for metrics at the country, cluster and soum levels.
+      country: {
+        label: 'COUNTRY_LEGEND_LABEL',
+        color: '#FF0000'
+      },
+      cluster: {
+        label: 'CLUSTER_LEGEND_LABEL',
+        color: '#0000FF'
+      },
+      soum: {
+        label: undefined, // Overriden by the Soum's name
+        color: '#00FF00'
+      }
+    },
+    fillColor: '#FFFF00'
   }
 };
 

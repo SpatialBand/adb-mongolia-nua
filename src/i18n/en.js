@@ -38,6 +38,13 @@ export const en = {
   DATA_SOUM_HIERARCHY: 'Mongolia, {{aimag_name}}, {{soum_name}}',
   DATA_BACK_TO_MAP: 'Back to Map',
 
+  HISTOGRAM_PEOPLE_TITLE: 'Distribution of population density by soum',
+  HISTOGRAM_HOUSEHOLDS_TITLE: 'Distribution of # of households by soum',
+  HISTOGRAM_ECONOMY_TITLE: 'Distribution of total # of enterprises by soum',
+  HISTOGRAM_INFRASTRUCTURE_TITLE: 'Distribution of % of population with access to piped water by soum',
+  COUNTRY_LEGEND_LABEL: 'Country average',
+  CLUSTER_LEGEND_LABEL: 'Cluster average',
+
   MAP_OSM_ATTRIBUTION: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
   MAP_ARCGIS_WORLD_IMAGERY_ATTRIBUTION: 'Source: Esri, DigitalGlobe, GeoEye, Earthstar Geographics, CNES/Airbus DS, USDA, USGS, AEX, Getmapping, Aerogrid, IGN, IGP, swisstopo, and the GIS User Community',
   MAP_ARCGIS_WORLD_TOPO_MAP_ATTRIBUTION: 'Sources: Esri, HERE, DeLorme, Intermap, increment P Corp., GEBCO, USGS, FAO, NPS, NRCAN, GeoBase, IGN, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), swisstopo, MapmyIndia, Â© OpenStreetMap contributors, and the GIS User Community',

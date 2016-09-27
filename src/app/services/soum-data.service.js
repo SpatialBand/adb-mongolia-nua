@@ -1,10 +1,11 @@
 const cartodb = require('cartodb');
 
 /** @ngInject */
-export function SoumData($log, $http, $q, Config) {
+export function SoumData($log, $http, $q, Config, _) {
   return {
     geojson,
-    load
+    load,
+    compare
   };
 
   function geojson(soumId) {
@@ -31,6 +32,48 @@ export function SoumData($log, $http, $q, Config) {
       // Done!
       return soum;
     });
+  }
+
+  function compare(soumId, columns) {
+    // Given a soumId return the geojson boundary for it
+    // Wrap in angular promise so we're consistent with the types of promises we're
+    //  using in public APIs
+    const dfd = $q.defer();
+    const sql = new cartodb.SQL({user: Config.carto.accountName});
+    const query = ["SELECT soums.soumcode, {{columns}},",
+                   "(EXISTS (",
+                     "SELECT 1 FROM clusters",
+                     "JOIN soums AS target",
+                       "ON ST_Intersects(target.the_geom, clusters.the_geom)",
+                     "WHERE ST_Intersects(soums.the_geom, clusters.the_geom)",
+                       "AND target.soumcode={{soumId}})",
+                   ") AS neighbor",
+                   "FROM soums"].join(' ');
+    sql.execute(query, {soumId, columns})
+      .done(data => dfd.resolve(data))
+      .error(error => dfd.reject(error));
+    return dfd.promise.then(data => _parseCompare(data, soumId, columns));
+  }
+
+  function _parseCompare(data, soumId, columns) {
+    const rows = data.rows;
+    const soumRow = _.find(rows, {soumcode: soumId});
+
+    const comparison = {
+      country: {},
+      cluster: {},
+      soum: soumRow
+    };
+
+    for (const column of columns) {
+      const colData = _.map(rows, column);
+      const clusterRows = _.filter(rows, {neighbor: true});
+      const clusterData = _.map(clusterRows, column);
+
+      comparison.country[column] = colData.reduce((sum, val) => sum + val, 0) / colData.length;
+      comparison.cluster[column] = clusterData.reduce((sum, val) => sum + val, 0) / clusterData.length;
+    }
+    return {rows, comparison};
   }
 
   function mergeResponses(responses) {
