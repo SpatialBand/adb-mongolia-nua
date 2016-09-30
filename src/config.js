@@ -221,18 +221,18 @@ const config = {
       // which gives averaged values for metrics at the country, cluster and soum levels.
       country: {
         label: 'COUNTRY_LEGEND_LABEL',
-        color: '#FF0000'
+        color: '#323349'
       },
       cluster: {
         label: 'CLUSTER_LEGEND_LABEL',
-        color: '#0000FF'
+        color: '#A2A3BF'
       },
       soum: {
         label: undefined, // Overriden by the Soum's name
-        color: '#00FF00'
+        color: '#0066b3'
       }
     },
-    fillColor: '#FFFF00'
+    fillColor: '#ddd'
   }
 };
 

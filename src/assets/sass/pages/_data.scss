@@ -1,9 +1,16 @@
 adb-histogram .legend {
   display: flex;
   list-style: none;
+  padding: 0;
+  margin-bottom: 0;
 
-  i:before {
-    content: "+";
+  i {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    line-height: 1;
+    border-radius: 2px;
+    margin: 3px 5px -2px 0;
   }
 
   em:before {
@@ -12,6 +19,7 @@ adb-histogram .legend {
 
   li {
     margin: 5px;
+    flex: 1;
   }
 }
 
