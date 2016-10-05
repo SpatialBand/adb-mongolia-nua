@@ -1,5 +1,4 @@
 import {ADBMapController} from '../../adb-map.controller';
-import angular from 'angular';
 
 const L = require('leaflet');
 
@@ -25,8 +24,6 @@ class DataViewController extends ADBMapController {
     this.charts.calloutList = [];
     this.charts.data = undefined;
 
-    angular.element(this.$window).bind('resize', this._onResize.bind(this));
-
     this.soumCode = Number.parseInt(this.$stateParams.soumCode, 10);
     this.$log.debug('soum code:', this.soumCode);
 
@@ -42,9 +39,6 @@ class DataViewController extends ADBMapController {
     const comparePromise = this.soumData.compare(this.soumCode, compareColumns);
 
     this.$q.all([soumPromise, comparePromise]).then(results => this._setChartData(results));
-
-    // Simulate a resize to get initial widths for the histograms
-    this._onResize();
   }
 
   _setupMap(options) {
@@ -54,11 +48,6 @@ class DataViewController extends ADBMapController {
 
   _addGeoJSONLayer(geojson) {
     L.geoJson(geojson).addTo(this.map);
-  }
-
-  _onResize() {
-    this.charts.width = document.querySelectorAll(".histogram .panel-content p")[0].clientWidth;
-    this.$timeout(() => this.$scope.$apply());
   }
 
   _setChartData(results) {

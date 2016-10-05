@@ -1,5 +1,3 @@
-import angular from 'angular';
-
 // Define object config of properties for this chart directive
 export const HistogramDefaults = {
   plotWidthPercentage: 0.8,
@@ -9,7 +7,7 @@ export const HistogramDefaults = {
   chartColor: '#000000'
 };
 
-export function HistogramDirective($log, HistogramDefaults, d3, _) {
+export function HistogramDirective($log, $window, HistogramDefaults, d3, _) {
   const PLOT_CLASS = 'adb-histogram';
 
   // Default color to use when a color isn't provided
@@ -28,12 +26,9 @@ export function HistogramDirective($log, HistogramDefaults, d3, _) {
     scope: {
       data: '<',        // Required
       id: '@',        // Required
-      plotWidth: '<',
-      plotHeight: '<',
       plotWidthPercentage: '@',
       barRadius: '@',
       valueField: '<',     // Required
-      margin: '&',
       callouts: '<',
       chartColor: '&',
       transitionMillis: '@',
@@ -45,8 +40,9 @@ export function HistogramDirective($log, HistogramDefaults, d3, _) {
       $scope.setDefaultMargins(10);
       $scope.configure(HistogramDefaults);
       $scope.isNumber = isFinite;
-      const config = $scope.config;
-      const margin = config.margin;
+
+      const drawWidth = 800;
+      const drawHeight = 400;
 
       // D3 margin, sizing, and spacing code
       element.addClass(PLOT_CLASS);
@@ -57,17 +53,12 @@ export function HistogramDirective($log, HistogramDefaults, d3, _) {
         element.attr('id', chartId);
       }
       const chart = d3.select(`#${chartId} svg.chart`)
-        .attr('width', $scope.plotWidth)
-        .attr('height', $scope.plotHeight)
-        .append('g')
-        .attr('transform', `translate(${margin.left},${margin.top})`);
+        // responsive SVG needs these 2 attributes and no width and height attr
+        .attr("preserveAspectRatio", "none")
+        .attr("viewBox", `0 0 ${drawWidth} ${drawHeight}`)
+        .append('g');
 
       $scope.$watch('calloutValues', () => {
-        $scope.redraw($scope.data);
-      });
-
-      $scope.$watchGroup(['plotWidth', 'plotHeight'], () => {
-        d3.select(`#${chartId} svg.chart`).attr('width', $scope.plotWidth);
         $scope.redraw($scope.data);
       });
 
@@ -76,7 +67,7 @@ export function HistogramDirective($log, HistogramDefaults, d3, _) {
         Data structure:
       */
       $scope.plot = data => {
-        if (!$scope.plotWidth || !$scope.plotHeight || !data) {
+        if (!data) {
           return;
         }
 
@@ -96,16 +87,14 @@ export function HistogramDirective($log, HistogramDefaults, d3, _) {
 
         const maxValue = _.max(data);
         const minValue = _.min(data);
-        const height = $scope.plotHeight - margin.top - margin.bottom;
-        const width = $scope.plotWidth - margin.left - margin.right;
 
         // Scale for log values
         const xKDE = d3.scale.linear()
           .domain([minValue, maxValue])
-          .range([0, width]);
+          .range([0, drawWidth]);
         const yKDE = d3.scale.linear()
           .domain([0, 1])
-          .range([height, 30]);
+          .range([drawHeight, 30]);
         // KDEstimator with probability distribution tapering out with a bandwidth of 0.2
         // with the epanechnikov kernel function
         const bins = buckets(minValue, maxValue, 100);
@@ -117,7 +106,7 @@ export function HistogramDirective($log, HistogramDefaults, d3, _) {
           .x(d => {
             return xKDE(d[0]);
           })
-          .y0(height)
+          .y0(drawHeight)
           .y1(d => {
             return yKDE(d[1]);
           });
@@ -134,7 +123,7 @@ export function HistogramDirective($log, HistogramDefaults, d3, _) {
               chart.append('rect') // Callouts - minValue is used for cases below 1 to avoid negInfinity on log10
                 .attr('x', xKDE(value >= 1 ? Math.log(value) / Math.log(10) : minValue))
                 .attr('y', 0)
-                .attr('height', height)
+                .attr('height', drawHeight)
                 .attr('width', '3px')
                 .attr('fill', callout.color || defaultColor);
             }
