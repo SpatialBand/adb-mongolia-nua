@@ -1,3 +1,5 @@
+import angular from 'angular';
+
 // Define object config of properties for this chart directive
 export const HistogramDefaults = {
   plotWidthPercentage: 0.8,
@@ -41,8 +43,8 @@ export function HistogramDirective($log, $window, HistogramDefaults, d3, _) {
       $scope.configure(HistogramDefaults);
       $scope.isNumber = isFinite;
 
-      const drawWidth = 800;
-      const drawHeight = 400;
+      let drawWidth = 800;
+      let drawHeight = 400;
 
       // D3 margin, sizing, and spacing code
       element.addClass(PLOT_CLASS);
@@ -60,6 +62,16 @@ export function HistogramDirective($log, $window, HistogramDefaults, d3, _) {
 
       $scope.$watch('calloutValues', () => {
         $scope.redraw($scope.data);
+      });
+
+      angular.element($window).bind('resize', () => {
+        const chart = d3.select(`#${chartId} svg.chart`);
+        if (chart.node().clientWidth !== drawWidth) {
+          drawWidth = chart.node().clientWidth;
+          drawHeight = drawWidth / 2;
+          chart.attr("viewBox", `0 0 ${drawWidth} ${drawHeight}`);
+          $scope.plot($scope.data);
+        }
       });
 
       // Overridden ChartingController method
