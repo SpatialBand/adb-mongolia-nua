@@ -214,7 +214,7 @@ const config = {
         title: 'HISTOGRAM_INFRASTRUCTURE_TITLE'
       }
     },
-    height: 200,
+    height: 150,
     width: undefined, // Width is dynamically detected from page state
     callouts: { // Callouts are the vertical bars representing specific values
       // The country, cluster and soum keys are to match the SoumData.compare response,
@@ -225,7 +225,7 @@ const config = {
       },
       cluster: {
         label: 'CLUSTER_LEGEND_LABEL',
-        color: '#A2A3BF'
+        color: '#B58554'
       },
       soum: {
         label: undefined, // Overriden by the Soum's name

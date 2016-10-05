@@ -21,9 +21,8 @@ export function HistogramDirective($log, HistogramDefaults, d3, _) {
     template: ['<svg class="chart"></svg><ul class="legend">',
                '<li ng-repeat="callout in callouts" ng-if="isNumber(callout.value[valueField])"',
                   'class="bullet-{{callout.type}}">',
-                  '<i style="background-color: {{callout.color}}"></i>',
                   '{{callout.label|translate}}',
-                  '<em>{{callout.value[valueField]|comparatize}}</em>',
+                  '<i style="background-color: {{callout.color}}">{{callout.value[valueField]|comparatize}}</i>',
                '</li></ul>'].join(''),
     controller: 'ChartingController',
     scope: {
@@ -136,7 +135,7 @@ export function HistogramDirective($log, HistogramDefaults, d3, _) {
                 .attr('x', xKDE(value >= 1 ? Math.log(value) / Math.log(10) : minValue))
                 .attr('y', 0)
                 .attr('height', height)
-                .attr('width', '2px')
+                .attr('width', '3px')
                 .attr('fill', callout.color || defaultColor);
             }
           }
