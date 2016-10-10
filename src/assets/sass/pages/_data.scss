@@ -1,6 +1,5 @@
 @media (min-width: 1041px) {
   adb-histogram svg.chart {
-    width: 100%;
     max-width: 500px;
     float: left;
   }
@@ -13,6 +12,11 @@
 
 adb-histogram {
   display: block;
+
+  svg.chart {
+    width: 100%;
+    height: 150px;
+  }
 }
 
 adb-histogram .legend {
