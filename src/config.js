@@ -214,25 +214,25 @@ const config = {
         title: 'HISTOGRAM_INFRASTRUCTURE_TITLE'
       }
     },
-    height: 200,
+    height: 150,
     width: undefined, // Width is dynamically detected from page state
     callouts: { // Callouts are the vertical bars representing specific values
       // The country, cluster and soum keys are to match the SoumData.compare response,
       // which gives averaged values for metrics at the country, cluster and soum levels.
       country: {
         label: 'COUNTRY_LEGEND_LABEL',
-        color: '#FF0000'
+        color: '#323349'
       },
       cluster: {
         label: 'CLUSTER_LEGEND_LABEL',
-        color: '#0000FF'
+        color: '#B58554'
       },
       soum: {
         label: undefined, // Overriden by the Soum's name
-        color: '#00FF00'
+        color: '#0066b3'
       }
     },
-    fillColor: '#FFFF00'
+    fillColor: '#ddd'
   }
 };
 

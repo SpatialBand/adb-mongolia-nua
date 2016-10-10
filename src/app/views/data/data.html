@@ -23,21 +23,19 @@
         <div class="flex-grid">
           <div class="panel histogram">
             <div class="panel-content text-center">
-              <p class="font-alt color-light text-uppercase" translate="{{ $ctrl.charts.histograms.people.title }}"></p>
               <div class="spinner" ng-if="!$ctrl.charts.data">
                 <div class="dot1"></div>
                 <div class="dot2"></div>
               </div>
-              <adb-histogram
+              <adb-histogram class="clearfix"
                 ng-if="$ctrl.charts.data"
-                plot-height="$ctrl.charts.height"
-                plot-width="$ctrl.charts.width"
                 data="$ctrl.charts.data"
                 callouts="$ctrl.charts.calloutList"
                 value-field="$ctrl.charts.histograms.people.field"
                 chart-color="$ctrl.charts.fillColor"
                 allow-redraw="true">
               </adb-histogram>
+              <p class="font-alt color-light text-uppercase" translate="{{ $ctrl.charts.histograms.people.title }}"></p>
             </div>
           </div>
         </div>
@@ -61,21 +59,19 @@
         <div class="flex-grid">
           <div class="panel histogram">
             <div class="panel-content text-center">
-              <p class="font-alt color-light text-uppercase" translate="{{ $ctrl.charts.histograms.households.title }}"></p>
               <div class="spinner" ng-if="!$ctrl.charts.data">
                 <div class="dot1"></div>
                 <div class="dot2"></div>
               </div>
-              <adb-histogram
+              <adb-histogram class="clearfix"
                 ng-if="$ctrl.charts.data"
-                plot-height="$ctrl.charts.height"
-                plot-width="$ctrl.charts.width"
                 data="$ctrl.charts.data"
                 callouts="$ctrl.charts.calloutList"
                 value-field="$ctrl.charts.histograms.households.field"
                 chart-color="$ctrl.charts.fillColor"
                 allow-redraw="true">
               </adb-histogram>
+              <p class="font-alt color-light text-uppercase" translate="{{ $ctrl.charts.histograms.households.title }}"></p>
             </div>
           </div>
         </div>
@@ -100,21 +96,19 @@
         <div class="flex-grid">
           <div class="panel histogram">
             <div class="panel-content text-center">
-              <p class="font-alt color-light text-uppercase" translate="{{ $ctrl.charts.fields.economy.title }}"></p>
               <div class="spinner" ng-if="!$ctrl.charts.data">
                 <div class="dot1"></div>
                 <div class="dot2"></div>
               </div>
-              <adb-histogram
+              <adb-histogram class="clearfix"
                 ng-if="$ctrl.charts.data"
-                plot-height="$ctrl.charts.height"
-                plot-width="$ctrl.charts.width"
                 data="$ctrl.charts.data"
                 callouts="$ctrl.charts.calloutList"
                 value-field="$ctrl.charts.histograms.economy.field"
                 chart-color="$ctrl.charts.fillColor"
                 allow-redraw="true">
               </adb-histogram>
+              <p class="font-alt color-light text-uppercase" translate="{{ $ctrl.charts.histograms.economy.title }}"></p>
             </div>
           </div>
         </div>
@@ -140,21 +134,19 @@
         <div class="flex-grid">
           <div class="panel histogram">
             <div class="panel-content text-center">
-              <p class="font-alt color-light text-uppercase" translate="{{ $ctrl.charts.fields.infrastructure.title }}"></p>
               <div class="spinner" ng-if="!$ctrl.charts.data">
                 <div class="dot1"></div>
                 <div class="dot2"></div>
               </div>
-              <adb-histogram
+              <adb-histogram class="clearfix"
                 ng-if="$ctrl.charts.data"
-                plot-height="$ctrl.charts.height"
-                plot-width="$ctrl.charts.width"
                 data="$ctrl.charts.data"
                 callouts="$ctrl.charts.calloutList"
                 value-field="$ctrl.charts.histograms.infrastructure.field"
                 chart-color="$ctrl.charts.fillColor"
                 allow-redraw="true">
               </adb-histogram>
+              <p class="font-alt color-light text-uppercase" translate="{{ $ctrl.charts.histograms.infrastructure.title }}"></p>
             </div>
           </div>
         </div>
