@@ -1,10 +1,11 @@
 .navbar {
   @extend %clearfix;
-  background: $brand-primary;
+  background: #fff;
   display: block;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   height: 74px;
+  border-bottom: 1px solid $navy;
 
   .navigation {
     display: inline-block;
@@ -12,13 +13,27 @@
 
     li {
       display: inline-block;
+      margin-left: 40px;
     }
 
     a {
-      color: #fff;
+      color: $navy;
       padding: 1rem;
     }
   } 
+
+  @media (max-width: 510px) {
+    height: auto;
+    text-align: center;
+
+    .navigation {
+      float: none !important;
+
+      li:first-of-type {
+        margin-left: 0;
+      }
+    }
+  }
 }
 
 .brand {
@@ -29,4 +44,9 @@
   > img {
     max-width: 23rem;
   }
+}
+
+.navigation {
+  list-style-type: none;
+  padding: 0;
 }

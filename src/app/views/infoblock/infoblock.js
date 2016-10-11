@@ -12,23 +12,16 @@ class InfoblockController {
 
     this.value = this.variable.value;
     this.title = this.variable.title;
+    this.isChange = this.variable.isChange;
+    this.isPercent = this.variable.isPercent;
 
     this.colorClass = '';
-    if (this.variable.isChange && this.value !== 0) {
+    if (this.isChange && this.value !== 0) {
       let ispositive = (this.value > 0);
       if (this.variable.reverseColor) {
         ispositive = !ispositive;
       }
       this.colorClass = ispositive ? 'color-positive' : 'color-negative';
-    }
-
-    this.value = Math.round(this.value * 100) / 100;
-
-    if (this.value > 0 && this.variable.isChange) {
-      this.value = `+${this.value}`;
-    }
-    if (this.variable.isPercent) {
-      this.value = `${this.value}%`;
     }
   }
 }

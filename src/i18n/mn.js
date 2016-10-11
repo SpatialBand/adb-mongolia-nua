@@ -1,5 +1,85 @@
 export const mn = {
-  MONGOLIA: 'Монгол улс',
-  GEOGRAPHIC_DATA_VIEWER: 'Газар зүйн мэдээллийн үзүүлэгч',
-  TRANSLATE_BUTTON_TEXT: 'English'
+  MONGOLIA: 'МОНГОЛ УЛС',
+  GEOGRAPHIC_DATA_VIEWER: 'ГАЗАРЗҮЙН МЭДЭЭЛЛИЙН САН',
+  TRANSLATE_BUTTON_TEXT: 'English',
+
+  NAVBAR_NATIONAL_DATA: 'Улсын мэдээлэл',
+  NAVBAR_CAPITAL_DATA: 'Улаанбаатар хотын мэдээлэл',
+  NAVBAR_HOME: 'Нүүр',
+  NAVBAR_GALLERY: 'Зургийн цомог',
+
+  HOME_NATIONAL_LOCATION: 'МОНГОЛ УЛС: ЗҮҮН АЗИ',
+  HOME_NATIONAL_HEADER: 'УЛСЫН МЭДЭЭЛЭЛ',
+  HOME_NATIONAL_COORDINATES: 'ХӨ 46.0000° , ЗУ 105.0000°',
+  HOME_NATIONAL_BLURB: 'Мэдээллийг улсын хэмжээнд сум тус бүрээр ангиласан бөгөөд сэдэвчилсэн газрын зургийг дараах хэлбэрүүдээр харж болно: хүн ам, эдийн засаг, тээвэр болон дэд бүтэц',
+  HOME_NATIONAL_CTA: 'УЛСЫН ХЭМЖЭЭНИЙ<br>МЭДЭЭЛЛИЙГ<br>НЭЭЖ ҮЗЭХ',
+
+  HOME_CAPITAL_LOCATION: 'УЛААНБААТАР ХОТ : МОНГОЛ УЛС',
+  HOME_CAPITAL_HEADER: 'УЛААНБААТАР ХОТЫН МЭДЭЭЛЭЛ',
+  HOME_CAPITAL_COORDINATES: 'ХӨ 47.9200° , ЗУ 106.9200°',
+  HOME_CAPITAL_BLURB: 'Мэдээллийг улсын хэмжээнд сум, дүүрэг тус бүрээр ангиласан бөгөөд сэдэвчилсэн газрын зургийг дараах хэмбэрүүдээр харж болно: хүн ам, эдийн засаг, тээвэр болон дэд бүтэц',
+  HOME_CAPITAL_CTA: 'УЛААНБААТАР ХОТЫН<br>МЭДЭЭЛЛИЙГ<br>НЭЭЖ ҮЗЭХ',
+
+  HOME_GALLERY_HEADER: 'ЗУРГИЙН ЦОМОГ',
+  HOME_GALLERY_PHOTOS: '35 ЗУРАГ, 1 УЛС',
+  HOME_GALLERY_BLURB: 'Бидний эх орны гайхалтай дүр зургийг харна уу. Харц булаам их хотын үзэмжээс авахуулаад хөдөө нутгийн амгалан тайван байдал нь Монгол улс болон Монголчууд бид гайхалтай ард түмэн гэдгийг илтгэх ажээ.',
+  HOME_GALLERY_CTA: 'МОНГОЛЫН ГАЗАР НУТГИЙН<br>ҮЗЭСГЭЛЭНТ БАЙДЛЫГ<br>ҮЗЭХ',
+
+  HOME_CREDITS_COPYRIGHT: '2016 - Бүх эрх хамгаалагдсан',
+  HOME_CREDITS_SUPPORTED_BY: 'Азийн хөгжлийн банкны дэмжлэгтэйгээр бүтээв.',
+  HOME_CREDITS_PARTNERSHIP: 'Хамтран ажилласан Монгол улсын Засгийн газар, Барилга, хот байгуулалтын яам, Нийслэлийн Засаг даргын Тамгын газар',
+
+  PEOPLE_HEADER: 'Хүн ам',
+  HOUSEHOLDS_HEADER: 'Айл, өрх',
+  ECONOMY_HEADER: 'Эдийн засаг',
+  INFRASTRUCTURE_HEADER_SHORT: 'Дэд бүтэц',
+  INFRASTRUCTURE_HEADER_LONG: 'Дэд бүтэц ; Орон сууц',
+
+  DATA_SOUM_HIERARCHY: 'Монгол улс, {{aimag_name}}, {{soum_name}}',
+  DATA_BACK_TO_MAP: 'Газрын зураг руу буцах',
+
+  MAP_OSM_ATTRIBUTION: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+  MAP_VIZ_POP: '2014 оны хүн ам',
+  MAP_VIZ_POP_CHANGE: '1995-2014 оны хооронд хүн амд гарсан өөрчлөлт',
+  MAP_VIZ_POP_SHARE: '2014 оны улсын хүн амд эзлэх хувь',
+  MAP_VIZ_POP_SHARE_CHANGE: '1995-2014 онд улсын хүн амд эзлэх хувьд гарсан өөрчлөлт',
+  MAP_VIZ_POP_DENSITY: '2014 оны хүн амын нягтаршил',
+  MAP_VIZ_HSHD_COUNT: '2014 оны өрхийн тоо',
+  MAP_VIZ_HSHD_COUNT_CHANGE: '2006-2014 онд өрхийн тоонд гарсан өөрчлөлт',
+  MAP_VIZ_HRDR_HSHD_COUNT: '2014 оны малчин өрхийн тоо',
+  MAP_VIZ_HRDR_HSHD_PCT: '2014 онд нийт өрхийн тоонд эзлэх малчин өрхийн тоо, хувиар',
+  MAP_VIZ_HRDR_HSHD_PCT_CHANGE: '2006-2013 онд нийт өрхийн тоонд эзлэх малчин өрхийн тоон өөрчлөлт, хувиар',
+  MAP_VIZ_ECON_ENTERPRISE_COUNT: '2014 оны нийт аж ахуйн нэгжийн тоо',
+  MAP_VIZ_ECON_ENTERPRISE_COUNT_CHANGE: '2000-2014 онд нийт аж ахуйн нэгжийн тоонд гарсан өөрчлөлт',
+  MAP_VIZ_ECON_MANUFACTURING_COUNT: '2014 оны нийт үйлдвэрлэл эрхэлдэг аж ахуйн нэгжийн тоо',
+  MAP_VIZ_ECON_MANUFACTURING_COUNT_CHANGE: '2000-2014 онд үйлдвэрлэл эрхэлдэг аж ахуйн нэгжийн тоонд гарсан өөрчлөлт',
+  MAP_VIZ_ECON_POVERTY_PCT: '2011 оны байдлаар нийт хүн амын ядуурлын түвшин',
+  MAP_VIZ_ECON_POVERTY_PCT_CHANGE: '2002-2011 онд нийт хүн амын дундах ядуурлын түвшинд гарсан өөрчлөлт, хувиар',
+  MAP_VIZ_ECON_SDI: '2014 оны Сумын хөгжлийн индекс',
+  MAP_VIZ_INFR_GER_PCT: '2010 оны байдлаар Гэр хороололд амьдарч буй хүн амын тоо, хувиар',
+  MAP_VIZ_INFR_INDOOR_SANITATION_PCT: '2010 оны байдлаар гэртээ төвлөрсөн ариун цэврийн байгууламжинд холбогдсон хүн амын тоо, хувиар',
+  MAP_VIZ_INFR_PIPED_WATER_PCT: '2010 оны байдлаар гэртээ цэвэр усны шугамд холбогдсон хүн амын тоо, хувиар',
+  MAP_VIZ_INFR_SOLID_WASTE_DISPOSAL_PCT: '2010 оны байдлаар албан журмаар хогоо ачуулдаг хүн амын тоо, хувиар',
+  MAP_VIZ_INFR_INTERNET_ACCESS_PCT: '2010 оны байдлаар интернет ашигладаг хүн амын тоо',
+
+  CLUSTER_LEGEND_LABEL: '!Cluster average',
+  COUNTRY_LEGEND_LABEL: '!Country average',
+  HISTOGRAM_ECONOMY_TITLE: '!Distribution of total # of enterprises by soum',
+  HISTOGRAM_HOUSEHOLDS_TITLE: '!Distribution of # of households by soum',
+  HISTOGRAM_INFRASTRUCTURE_TITLE: '!Distribution of % of population with access to piped water by soum',
+  HISTOGRAM_PEOPLE_TITLE: '!Distribution of population density by soum',
+
+  MAP_ARCGIS_WORLD_IMAGERY_ATTRIBUTION: '!Source: Esri, DigitalGlobe, GeoEye, Earthstar Geographics, CNES/Airbus DS, USDA, USGS, AEX, Getmapping, Aerogrid, IGN, IGP, swisstopo, and the GIS User Community',
+  MAP_ARCGIS_WORLD_TOPO_MAP_ATTRIBUTION: '!Sources: Esri, HERE, DeLorme, Intermap, increment P Corp., GEBCO, USGS, FAO, NPS, NRCAN, GeoBase, IGN, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), swisstopo, MapmyIndia, Â© OpenStreetMap contributors, and the GIS User Community',
+
+  MAP_DEFAULT_TITLE: '!Default',
+  MAP_ARCGIS_WORLD_TOPO_MAP_TITLE: '!Topographical',
+  MAP_ARCGIS_WORLD_IMAGERY_TITLE: '!Satelite',
+
+  MAP_CLUSTERS_TITLE: '!Show regional clusters',
+  MAP_ROADWAYS_TITLE: '!Show roadways',
+  MAP_SETTLEMENTS_TITLE: '!Show major settelemnts',
+
+  ZOOM_TO_AIMAG_DEFAULT: '!Zoom to...',
+  ZOOM_TO_AIMAG_PROMPT: '!Zoom to Aimag'
 };

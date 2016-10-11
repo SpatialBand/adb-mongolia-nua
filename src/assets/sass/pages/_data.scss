@@ -1,0 +1,96 @@
+@media (min-width: 1041px) {
+  adb-histogram svg.chart {
+    max-width: 500px;
+    float: left;
+  }
+
+  adb-histogram .legend {
+    float: left;
+    width: 50%;
+  }
+}
+
+adb-histogram {
+  display: block;
+
+  svg.chart {
+    width: 100%;
+    height: 150px;
+  }
+}
+
+adb-histogram .legend {
+  list-style: none;
+  margin-bottom: 0;
+  display: block;
+  text-align: left;
+  margin: 0;
+  padding: 0 10px;
+
+  i {
+    display: inline-block;
+    line-height: 1;
+    border-radius: 2px;
+    margin: 0 5px;
+    padding: 2px 5px;
+    color: #fff;
+    float: right
+  }
+
+  li {
+    margin: 5px;
+    display: block;
+    font-size: 21px;
+    padding: 7px;
+    border-bottom: 1px solid #ddd;
+  }
+}
+
+.spinner {
+  margin: 100px auto;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  text-align: center;
+
+  -webkit-animation: sk-rotate 2.0s infinite linear;
+  animation: sk-rotate 2.0s infinite linear;
+}
+
+.dot1, .dot2 {
+  width: 60%;
+  height: 60%;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  background-color: #333;
+  border-radius: 100%;
+
+  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+  animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+.dot2 {
+  top: auto;
+  bottom: 0;
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+@-webkit-keyframes sk-rotate { 100% { -webkit-transform: rotate(360deg) }}
+@keyframes sk-rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}
+
+@-webkit-keyframes sk-bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bounce {
+  0%, 100% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}

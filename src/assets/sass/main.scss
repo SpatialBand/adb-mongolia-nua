@@ -4,12 +4,6 @@
  */
 
 /**
- * Vendors
- */
-/* @import
-  "vendors/..."; */
-
-/**
  * Utils
  */
 @import
@@ -19,7 +13,7 @@
  * Base
  */
 @import
-	"base/normalize",
+  "base/normalize",
   "base/base",
   "base/helpers",
 	"base/typography",
@@ -53,4 +47,12 @@
  * Pages
  */
 @import
-  "pages/home";
+  "pages/home",
+  "pages/data";
+
+
+/*
+ * Print Style
+ */
+@import
+  "base/print";

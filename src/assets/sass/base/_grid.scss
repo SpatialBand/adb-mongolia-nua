@@ -25,6 +25,17 @@
 
   .panel {
     flex: 1;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+
+    p {
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    p:last-of-type {
+      margin-bottom: 0;
+    }
 
     + .panel {
       margin-left: 2rem;
