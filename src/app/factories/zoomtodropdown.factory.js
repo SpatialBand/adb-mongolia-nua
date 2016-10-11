@@ -10,7 +10,7 @@ export function ZoomToDropdownFactory() {
     },
 
     // Using the arrow shorthand clobbers "this", so we need to use the old way
-    onAdd: function (map) {
+    onAdd(map) {
       this.map = map;
 
       const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
@@ -24,12 +24,12 @@ export function ZoomToDropdownFactory() {
       return container;
     },
 
-    setChoices: function (choices) {
+    setChoices(choices) {
       this.options.choices = choices;
       this._reflowChoices();
     },
 
-    _reflowChoices: function () {
+    _reflowChoices() {
       if (!this.dropdown) {
         return;
       }
@@ -54,13 +54,13 @@ export function ZoomToDropdownFactory() {
       this.dropdown.addEventListener('change', this.onSelect.bind(this));
     },
 
-    _createOption: function (label, id) {
+    _createOption(label, id) {
       const option = L.DomUtil.create('option', '', this.dropdown);
       option.innerHTML = label;
       option.id = id;
     },
 
-    onSelect: function () {
+    onSelect() {
       const key = this.dropdown.options[this.dropdown.selectedIndex].id;
       const geojson = this.options.choices[key].the_geom;
       if (geojson) {
