@@ -72,10 +72,10 @@ export const en = {
   MAP_VIZ_INFR_INTERNET_ACCESS_PCT: '% of Population with Access to Internet 2010',
   MAP_DEFAULT_TITLE: 'Default',
   MAP_ARCGIS_WORLD_TOPO_MAP_TITLE: 'Topographical',
-  MAP_ARCGIS_WORLD_IMAGERY_TITLE: 'Satelite',
+  MAP_ARCGIS_WORLD_IMAGERY_TITLE: 'Satellite',
   MAP_ROADWAYS_TITLE: 'Show roadways',
   MAP_CLUSTERS_TITLE: 'Show regional clusters',
-  MAP_SETTLEMENTS_TITLE: 'Show major settelemnts',
+  MAP_SETTLEMENTS_TITLE: 'Show major settlements',
   ZOOM_TO_AIMAG_PROMPT: 'Zoom to Aimag',
   ZOOM_TO_AIMAG_DEFAULT: 'Zoom to...'
 };
