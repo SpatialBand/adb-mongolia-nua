@@ -1,3 +1,4 @@
+/* @ngInject */
 export function UtilsFactory($document) {
   const module = {};
 

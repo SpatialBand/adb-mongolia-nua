@@ -1,6 +1,4 @@
-/**
- * ngInject
- */
+/* @ngInject */
 export function ChartingController($scope, $attrs, $element, Utils) {
   let defaultMargins = {left: 30, top: 10, bottom: 30, right: 10};
   // TODO: Refactor this so we don't use $scope to store internal state. We

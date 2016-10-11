@@ -1,5 +1,6 @@
 import angular from 'angular';
 
+
 // Define object config of properties for this chart directive
 export const HistogramDefaults = {
   plotWidthPercentage: 0.8,
@@ -9,6 +10,7 @@ export const HistogramDefaults = {
   chartColor: '#000000'
 };
 
+/* @ngInject */
 export function HistogramDirective($log, $window, HistogramDefaults, d3, _) {
   const PLOT_CLASS = 'adb-histogram';
 
