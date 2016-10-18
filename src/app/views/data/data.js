@@ -5,7 +5,7 @@ const L = require('leaflet');
 class DataViewController extends ADBMapController {
 
   /** @ngInject */
-  constructor($window, $filter, $log, $scope, $stateParams, $timeout, $q, Config, SoumData) {
+  constructor($window, $filter, $log, $scope, $stateParams, $timeout, $q, Config, DataConfig, SoumData) {
     super($filter, Config, 'dataMap');
     this.$log = $log;
     this.$scope = $scope;
@@ -14,13 +14,14 @@ class DataViewController extends ADBMapController {
     this.$timeout = $timeout;
     this.$window = $window;
     this.$q = $q;
+    this.dataConfig = DataConfig[$stateParams.dataConfigKey];
   }
 
   $onInit() {
     super.$onInit();
 
     // Initialize the histogram charts configuration
-    this.charts = this.config.charts;
+    this.charts = this.dataConfig.charts;
     this.charts.calloutList = [];
     this.charts.data = undefined;
 
@@ -28,7 +29,8 @@ class DataViewController extends ADBMapController {
     this.$log.debug('soum code:', this.soumCode);
 
     this.soumData.geojson(this.soumCode).then(geojson => this._addGeoJSONLayer(geojson));
-    const soumPromise = this.soumData.load(this.soumCode).then(soum => this.soum = soum); // eslint-disable-line no-return-assign
+    const soumPromise = this.soumData.load(this.soumCode, this.dataConfig.mapSections)
+      .then(soum => this.soum = soum); // eslint-disable-line no-return-assign
 
     const compareColumns = [];
     for (const type of Object.keys(this.charts.histograms)) {

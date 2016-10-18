@@ -1,7 +1,7 @@
 const cartodb = require('cartodb');
 
 /** @ngInject */
-export function SoumData($log, $http, $q, Config, _) {
+export function SoumData($log, $http, $q, Config, DataConfig, _) {
   return {
     geojson,
     load,
@@ -22,13 +22,14 @@ export function SoumData($log, $http, $q, Config, _) {
     return dfd.promise;
   }
 
-  function load(soumId) {
+  function load(soumId, mapSections) {
+    // mapSections is the relevant mapSections key of a DataConfig object to load data for
     // Return a promise that resolves with the constructed soum
-    return loadSoumData(soumId).then(responses => {
+    return loadSoumData(soumId, mapSections).then(responses => {
       // Pass all response objects to merge them together as one row
       const combinedRow = mergeResponses(responses);
       // Format the combined result with the same structure as Config
-      const soum = formatSoumData(combinedRow);
+      const soum = formatSoumData(combinedRow, mapSections);
       // Done!
       return soum;
     });
@@ -91,11 +92,11 @@ export function SoumData($log, $http, $q, Config, _) {
     return result;
   }
 
-  function formatSoumData(soumRow) {
+  function formatSoumData(soumRow, mapSections) {
     // Take a key->value row from CartoSQL and format it the same way as Config
     const soum = {};
-    for (const label of Object.keys(Config.mapSections)) {
-      const section = Config.mapSections[label];
+    for (const label of Object.keys(mapSections)) {
+      const section = mapSections[label];
       soum[label] = processSection(soumRow, section, 'visualizations');
     }
     soum.metadata = processSection(soumRow, Config.metadata, 'fields');
@@ -116,12 +117,12 @@ export function SoumData($log, $http, $q, Config, _) {
     return results;
   }
 
-  function getAllFields() {
+  function getAllFields(mapSections) {
     // Parse through the config to build a mapping of {table: [field...]} for all
     //  columns referenced.
     const fields = {};
-    for (const label of Object.keys(Config.mapSections)) {
-      loadSectionFields(fields, Config.mapSections[label], 'visualizations');
+    for (const label of Object.keys(mapSections)) {
+      loadSectionFields(fields, mapSections[label], 'visualizations');
     }
     loadSectionFields(fields, Config.metadata, 'fields');
     return fields;
@@ -137,10 +138,10 @@ export function SoumData($log, $http, $q, Config, _) {
     }
   }
 
-  function loadSoumData(soumId) {
+  function loadSoumData(soumId, mapSections) {
     // Given a Soum ID, use CartoSQL to load all data referenced in the Config
     //  for that Soum.
-    const fieldList = getAllFields();
+    const fieldList = getAllFields(mapSections);
     const promises = [];
 
     for (const table of Object.keys(fieldList)) {

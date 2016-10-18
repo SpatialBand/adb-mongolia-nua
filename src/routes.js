@@ -11,11 +11,11 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
       template: '<adb-home-view></adb-home-view>'
     })
     .state('map', {
-      url: '/map',
+      url: '/:dataConfigKey/map',
       template: '<adb-map-view></adb-map-view>'
     })
     .state('data', {
-      url: '/data/:soumCode',
+      url: '/:dataConfigKey/data/:soumCode',
       template: '<adb-data-view></adb-data-view>'
     });
 }
