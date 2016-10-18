@@ -1,7 +1,7 @@
 const cartodb = require('cartodb');
 
 /** @ngInject */
-export function SoumData($log, $http, $q, Config, DataConfig, _) {
+export function SoumData($log, $http, $q, Config, _) {
   return {
     geojson,
     load,
@@ -23,7 +23,7 @@ export function SoumData($log, $http, $q, Config, DataConfig, _) {
   }
 
   function load(soumId, mapSections) {
-    // mapSections is the relevant mapSections key of a DataConfig object to load data for
+    // mapSections is the relevant mapSections key of a PageConfig object to load data for
     // Return a promise that resolves with the constructed soum
     return loadSoumData(soumId, mapSections).then(responses => {
       // Pass all response objects to merge them together as one row

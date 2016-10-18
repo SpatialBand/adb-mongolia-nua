@@ -4,6 +4,7 @@ import angular from 'angular';
 import {adbNavbarView} from './navbar/navbar';
 import {adbHomeView} from './home/home';
 import {adbMapView} from './map/map';
+import {adbUbMapView} from './map/ub-map';
 import {adbDataView} from './data/data';
 import {adbInfoblockView} from './infoblock/infoblock';
 import {appConfig} from '../../config';
@@ -22,5 +23,6 @@ angular
   .component('adbNavbarView', adbNavbarView)
   .component('adbHomeView', adbHomeView)
   .component('adbMapView', adbMapView)
+  .component('adbUbMapView', adbUbMapView)
   .component('adbDataView', adbDataView)
   .component('adbInfoblockView', adbInfoblockView);

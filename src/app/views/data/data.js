@@ -5,7 +5,7 @@ const L = require('leaflet');
 class DataViewController extends ADBMapController {
 
   /** @ngInject */
-  constructor($window, $filter, $log, $scope, $stateParams, $timeout, $q, Config, PageConfig, SoumData) {
+  constructor($window, $filter, $log, $scope, $stateParams, $timeout, $q, Config, NationalConfig, SoumData) {
     super($filter, Config, 'dataMap');
     this.$log = $log;
     this.$scope = $scope;
@@ -14,7 +14,7 @@ class DataViewController extends ADBMapController {
     this.$timeout = $timeout;
     this.$window = $window;
     this.$q = $q;
-    this.pageConfig = PageConfig[$stateParams.pageConfigKey];
+    this.pageConfig = NationalConfig;
   }
 
   $onInit() {
@@ -29,7 +29,7 @@ class DataViewController extends ADBMapController {
     this.$log.debug('soum code:', this.soumCode);
 
     this.soumData.geojson(this.soumCode).then(geojson => this._addGeoJSONLayer(geojson));
-    const soumPromise = this.soumData.load(this.soumCode, this.dataConfig.mapSections)
+    const soumPromise = this.soumData.load(this.soumCode, this.pageConfig.mapSections)
       .then(soum => this.soum = soum); // eslint-disable-line no-return-assign
 
     const compareColumns = [];

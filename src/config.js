@@ -1,6 +1,7 @@
 import angular from 'angular';
 
-import {PageConfig} from './config/page-config';
+import {NationalConfig} from './config/national';
+import {UlaanbaatarConfig} from './config/ulaanbaatar';
 
 const config = {
   carto: {
@@ -22,4 +23,5 @@ export const appConfig = 'adb.config';
 
 angular.module(appConfig, [])
   .constant('Config', config)
-  .constant('PageConfig', PageConfig);
+  .constant('NationalConfig', NationalConfig)
+  .constant('UlaanbaatarConfig', UlaanbaatarConfig);
