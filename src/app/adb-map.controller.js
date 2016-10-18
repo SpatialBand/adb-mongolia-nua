@@ -2,14 +2,15 @@ const L = require('leaflet');
 
 export class ADBMapController {
 
-  constructor($filter, Config, mapId) {
+  constructor($filter, $stateParams, Config, PageConfig, mapId) {
     this.$filter = $filter;
     this.config = Config;
+    this.pageConfig = PageConfig[$stateParams.pageConfigKey];
     this.mapId = mapId;
   }
 
   $onInit() {
-    this._setupMap(this.config.map);
+    this._setupMap(this.pageConfig.map);
   }
 
   _setupMap(options) {

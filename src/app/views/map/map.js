@@ -5,12 +5,11 @@ import {ADBMapController} from '../../adb-map.controller';
 
 class MapViewController extends ADBMapController {
   /** @ngInject */
-  constructor($filter, $log, $stateParams, AimagData, Config, DataConfig, ZoomToDropdown) {
-    super($filter, Config, 'map');
+  constructor($filter, $log, $stateParams, AimagData, Config, PageConfig, ZoomToDropdown) {
+    super($filter, $stateParams, Config, PageConfig, 'map');
     this.$log = $log;
     this.AimagData = AimagData;
     this.ZoomToDropdown = ZoomToDropdown;
-    this.dataConfig = DataConfig[$stateParams.dataConfigKey];
   }
 
   $onInit() {
@@ -26,7 +25,7 @@ class MapViewController extends ADBMapController {
 
   tabClicked($event, tabId) {
     this.activeTab = tabId;
-    const section = this.dataConfig.mapSections[tabId];
+    const section = this.pageConfig.mapSections[tabId];
     if (section.visualizations.length) {
       this._setActiveVis(section.visualizations[0]);
     }
@@ -62,7 +61,7 @@ class MapViewController extends ADBMapController {
 
   _activateDefaultVis() {
     // Activate the default visualization
-    const peopleSection = this.dataConfig.mapSections.people;
+    const peopleSection = this.pageConfig.mapSections.people;
     this._setActiveVis(peopleSection.visualizations[0]);
   }
 

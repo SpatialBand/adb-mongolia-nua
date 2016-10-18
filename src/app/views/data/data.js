@@ -5,7 +5,7 @@ const L = require('leaflet');
 class DataViewController extends ADBMapController {
 
   /** @ngInject */
-  constructor($window, $filter, $log, $scope, $stateParams, $timeout, $q, Config, DataConfig, SoumData) {
+  constructor($window, $filter, $log, $scope, $stateParams, $timeout, $q, Config, PageConfig, SoumData) {
     super($filter, Config, 'dataMap');
     this.$log = $log;
     this.$scope = $scope;
@@ -14,14 +14,14 @@ class DataViewController extends ADBMapController {
     this.$timeout = $timeout;
     this.$window = $window;
     this.$q = $q;
-    this.dataConfig = DataConfig[$stateParams.dataConfigKey];
+    this.pageConfig = PageConfig[$stateParams.pageConfigKey];
   }
 
   $onInit() {
     super.$onInit();
 
     // Initialize the histogram charts configuration
-    this.charts = this.dataConfig.charts;
+    this.charts = this.pageConfig.charts;
     this.charts.calloutList = [];
     this.charts.data = undefined;
 

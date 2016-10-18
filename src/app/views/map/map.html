@@ -4,7 +4,7 @@
     <nav class="tabs">
       <a class="tab"
          ng-click="$ctrl.tabClicked($event, key)"
-         ng-repeat="(key, section) in $ctrl.dataConfig.mapSections"
+         ng-repeat="(key, section) in $ctrl.pageConfig.mapSections"
          ng-class="{'active': key === $ctrl.activeTab}">
         <span class="tab-name" translate="{{ ::section.title }}"></span>
         <i ng-class="section.icon"></i>
@@ -12,7 +12,7 @@
     </nav>
     <div class="tab-panes">
       <div class="tab-pane"
-           ng-repeat="(key, section) in $ctrl.dataConfig.mapSections"
+           ng-repeat="(key, section) in $ctrl.pageConfig.mapSections"
            ng-class="{'active': key === $ctrl.activeTab}">
         <h4 class="tab-pane-heading" translate="{{ ::section.title }}"></h4>
         <div class="tab-pane-body">
