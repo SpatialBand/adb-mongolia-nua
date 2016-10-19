@@ -1,0 +1,161 @@
+<adb-navbar-view></adb-navbar-view>
+<div class="data-container">
+  <div id="dataMap" class="map">
+  </div>
+  <main>
+    <div class="container">
+      <a ui-sref="ub-map" class="pull-right" id="back-to-map">
+        <i class="icon-arrow-left"></i><span translate="DATA_BACK_TO_MAP"></span>
+      </a>
+      <h1 class="h5 font-alt text-uppercase" translate="DATA_SOUM_HIERARCHY"
+      translate-values="{soum_name: $ctrl.soum.metadata.soum_name.value,
+                         aimag_name: $ctrl.soum.metadata.aimag_name.value}"></h1>
+    </div>
+
+    <!-- PEOPLE Section -->
+    <section>
+      <div class="container">
+        <h2 class="text-uppercase" translate="PEOPLE_HEADER"></h2>
+        <div class="flex-grid">
+          <adb-infoblock-view variable="$ctrl.soum.people.pop14" class="panel half"></adb-infoblock-view>
+          <adb-infoblock-view variable="$ctrl.soum.people.pchn9514" class="panel half"></adb-infoblock-view>
+        </div>
+        <div class="flex-grid">
+          <div class="panel histogram">
+            <div class="panel-content text-center">
+              <div class="spinner" ng-if="!$ctrl.charts.data">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+              </div>
+              <adb-histogram class="clearfix"
+                ng-if="$ctrl.charts.data"
+                data="$ctrl.charts.data"
+                callouts="$ctrl.charts.calloutList"
+                value-field="$ctrl.charts.histograms.people.field"
+                chart-color="$ctrl.charts.fillColor"
+                allow-redraw="true">
+              </adb-histogram>
+              <p class="font-alt color-light text-uppercase" translate="{{ $ctrl.charts.histograms.people.title }}"></p>
+            </div>
+          </div>
+        </div>
+        <div class="flex-grid">
+          <adb-infoblock-view variable="$ctrl.soum.people.sh14" class="panel third"></adb-infoblock-view>
+          <adb-infoblock-view variable="$ctrl.soum.people.shch9514" class="panel third"></adb-infoblock-view>
+          <adb-infoblock-view variable="$ctrl.soum.people.den14" class="panel third"></adb-infoblock-view>
+        </div>
+      </div>
+    </section>
+    <!-- PEOPLE Section -->
+
+    <!-- HOUSEHOLDS Section -->
+    <section>
+      <div class="container">
+        <h2 class="text-uppercase" translate="HOUSEHOLDS_HEADER"></h2>
+        <div class="flex-grid">
+          <adb-infoblock-view variable="$ctrl.soum.households.hh14" class="panel half"></adb-infoblock-view>
+          <adb-infoblock-view variable="$ctrl.soum.households.chnhh614" class="panel half"></adb-infoblock-view>
+        </div>
+        <div class="flex-grid">
+          <div class="panel histogram">
+            <div class="panel-content text-center">
+              <div class="spinner" ng-if="!$ctrl.charts.data">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+              </div>
+              <adb-histogram class="clearfix"
+                ng-if="$ctrl.charts.data"
+                data="$ctrl.charts.data"
+                callouts="$ctrl.charts.calloutList"
+                value-field="$ctrl.charts.histograms.households.field"
+                chart-color="$ctrl.charts.fillColor"
+                allow-redraw="true">
+              </adb-histogram>
+              <p class="font-alt color-light text-uppercase" translate="{{ $ctrl.charts.histograms.households.title }}"></p>
+            </div>
+          </div>
+        </div>
+        <div class="flex-grid">
+          <adb-infoblock-view variable="$ctrl.soum.households.hhh14" class="panel third"></adb-infoblock-view>
+          <adb-infoblock-view variable="$ctrl.soum.households.hpc14" class="panel third"></adb-infoblock-view>
+          <adb-infoblock-view variable="$ctrl.soum.households.chhpc0613" class="panel third"></adb-infoblock-view>
+        </div>
+      </div>
+    </section>
+    <!-- HOUSEHOLDS Section -->
+
+    <!-- ECONOMY Section -->
+    <section>
+      <div class="container">
+        <h2 class="text-uppercase" translate="ECONOMY_HEADER"></h2>
+        <div class="flex-grid">
+            <adb-infoblock-view variable="$ctrl.soum.economy.ent14" class="panel third"></adb-infoblock-view>
+            <adb-infoblock-view variable="$ctrl.soum.economy.ent0014" class="panel third"></adb-infoblock-view>
+            <adb-infoblock-view variable="$ctrl.soum.economy.sdi" class="panel third"></adb-infoblock-view>
+        </div>
+        <div class="flex-grid">
+          <div class="panel histogram">
+            <div class="panel-content text-center">
+              <div class="spinner" ng-if="!$ctrl.charts.data">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+              </div>
+              <adb-histogram class="clearfix"
+                ng-if="$ctrl.charts.data"
+                data="$ctrl.charts.data"
+                callouts="$ctrl.charts.calloutList"
+                value-field="$ctrl.charts.histograms.economy.field"
+                chart-color="$ctrl.charts.fillColor"
+                allow-redraw="true">
+              </adb-histogram>
+              <p class="font-alt color-light text-uppercase" translate="{{ $ctrl.charts.histograms.economy.title }}"></p>
+            </div>
+          </div>
+        </div>
+        <div class="flex-grid">
+          <adb-infoblock-view variable="$ctrl.soum.economy.man14" class="panel"></adb-infoblock-view>
+          <adb-infoblock-view variable="$ctrl.soum.economy.chman0014" class="panel"></adb-infoblock-view>
+          <!-- <adb-infoblock-view variable="$ctrl.soum.economy.pcpov11" class="panel"></adb-infoblock-view> -->
+          <adb-infoblock-view variable="$ctrl.soum.economy.chpcpov11" class="panel" reverse-color="true"></adb-infoblock-view>
+        </div>
+      </div>
+    </section>
+    <!-- ECONOMY Section -->
+
+    <!-- INFRASTRUCTURE Section -->
+    <section>
+      <div class="container">
+        <h2 class="text-uppercase" translate="INFRASTRUCTURE_HEADER_LONG"></h2>
+        <div class="flex-grid">
+          <adb-infoblock-view variable="$ctrl.soum.infrastructure.pcger10" class="panel"></adb-infoblock-view>
+          <adb-infoblock-view variable="$ctrl.soum.infrastructure.pcsan10" class="panel"></adb-infoblock-view>
+          <adb-infoblock-view variable="$ctrl.soum.infrastructure.pcwat10" class="panel"></adb-infoblock-view>
+        </div>
+        <div class="flex-grid">
+          <div class="panel histogram">
+            <div class="panel-content text-center">
+              <div class="spinner" ng-if="!$ctrl.charts.data">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+              </div>
+              <adb-histogram class="clearfix"
+                ng-if="$ctrl.charts.data"
+                data="$ctrl.charts.data"
+                callouts="$ctrl.charts.calloutList"
+                value-field="$ctrl.charts.histograms.infrastructure.field"
+                chart-color="$ctrl.charts.fillColor"
+                allow-redraw="true">
+              </adb-histogram>
+              <p class="font-alt color-light text-uppercase" translate="{{ $ctrl.charts.histograms.infrastructure.title }}"></p>
+            </div>
+          </div>
+        </div>
+        <div class="flex-grid">
+          <adb-infoblock-view variable="$ctrl.soum.infrastructure.pcsw10" class="panel"></adb-infoblock-view>
+          <adb-infoblock-view variable="$ctrl.soum.infrastructure.pcint10" class="panel"></adb-infoblock-view>
+        </div>
+      </div>
+    </section>
+    <!-- INFRASTRUCTURE Section -->
+  </main>
+</div>

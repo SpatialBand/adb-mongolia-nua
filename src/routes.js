@@ -23,7 +23,7 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
       template: '<adb-ub-map-view></adb-ub-map-view>'
     })
     .state('ub-data', {
-      url: '/ulaanbaatar/data/:khoroosId',
+      url: '/ulaanbaatar/data/:khorooId',
       template: '<adb-ub-data-view></adb-ub-data-view>'
     });
 }
