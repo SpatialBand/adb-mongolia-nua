@@ -9,7 +9,7 @@ export class ADBMapController {
   }
 
   $onInit() {
-    this._setupMap(this.config.map);
+    this._setupMap(this.pageConfig.map);
   }
 
   _setupMap(options) {

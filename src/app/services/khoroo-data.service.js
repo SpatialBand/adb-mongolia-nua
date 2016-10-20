@@ -1,78 +1,62 @@
 const cartodb = require('cartodb');
 
 /** @ngInject */
-export function SoumData($log, $http, $q, Config, NationalConfig, _) {
+export function KhorooData($log, $http, $q, Config, UlaanbaatarConfig, _) {
   return {
     geojson,
     load,
     compare
   };
 
-  function geojson(soumId) {
-    // Given a soumId return the geojson boundary for it
+  function geojson(khorooId) {
+    // Given a khorooId return the geojson boundary for it
     // Wrap in angular promise so we're consistent with the types of promises we're
     //  using in public APIs
     const dfd = $q.defer();
     const sql = new cartodb.SQL({user: Config.carto.accountName});
-    sql.execute("SELECT the_geom FROM soums WHERE soumcode = {{soumcode}}", {
-      soumcode: soumId
+    sql.execute("SELECT the_geom FROM khoroos WHERE kh_eng = '{{khorooId}}'", {
+      khorooId
     }, {
       format: 'geojson'
     }).done(data => dfd.resolve(data)).error(error => dfd.reject(error));
     return dfd.promise;
   }
 
-  function load(soumId, mapSections) {
+  function load(khorooId, mapSections) {
     // mapSections is the relevant mapSections key of a PageConfig object to load data for
-    // Return a promise that resolves with the constructed soum
-    return loadSoumData(soumId, mapSections).then(responses => {
+    // Return a promise that resolves with the constructed khoroo
+    return loadKhorooData(khorooId, mapSections).then(responses => {
       // Pass all response objects to merge them together as one row
       const combinedRow = mergeResponses(responses);
       // Format the combined result with the same structure as Config
-      const soum = formatSoumData(combinedRow, mapSections);
+      const khoroo = formatKhorooData(combinedRow, mapSections);
       // Done!
-      return soum;
+      return khoroo;
     });
   }
 
-  function compare(soumId, columns) {
-    // Given a soumId return the geojson boundary for it
-    // Wrap in angular promise so we're consistent with the types of promises we're
-    //  using in public APIs
+  function compare(khorooId, columns) {
     const dfd = $q.defer();
     const sql = new cartodb.SQL({user: Config.carto.accountName});
-    const query = ["SELECT soums.soumcode, {{columns}},",
-                   "(EXISTS (",
-                     "SELECT 1 FROM clusters",
-                     "JOIN soums AS target",
-                       "ON ST_Intersects(target.the_geom, clusters.the_geom)",
-                     "WHERE ST_Intersects(soums.the_geom, clusters.the_geom)",
-                       "AND target.soumcode={{soumId}})",
-                   ") AS neighbor",
-                   "FROM soums"].join(' ');
-    sql.execute(query, {soumId, columns})
+    const query = "SELECT khoroos.kh_eng, {{columns}} FROM khoroos";
+    sql.execute(query, {columns})
       .done(data => dfd.resolve(data))
       .error(error => dfd.reject(error));
-    return dfd.promise.then(data => _parseCompare(data, soumId, columns));
+    return dfd.promise.then(data => _parseCompare(data, khorooId, columns));
   }
 
-  function _parseCompare(data, soumId, columns) {
+  function _parseCompare(data, khorooId, columns) {
     const rows = data.rows;
-    const soumRow = _.find(rows, {soumcode: soumId});
+    const khorooRow = _.find(rows, {kh_eng: khorooId});
 
     const comparison = {
-      country: {},
-      cluster: {},
-      soum: soumRow
+      ulaanbaatar: {},
+      khoroo: khorooRow
     };
 
     for (const column of columns) {
       const colData = _.map(rows, column);
-      const clusterRows = _.filter(rows, {neighbor: true});
-      const clusterData = _.map(clusterRows, column);
-
-      comparison.country[column] = colData.reduce((sum, val) => sum + val, 0) / colData.length;
-      comparison.cluster[column] = clusterData.reduce((sum, val) => sum + val, 0) / clusterData.length;
+      comparison.ulaanbaatar[column] = colData.reduce((sum, val) => sum + val, 0) / colData.length;
     }
     return {rows, comparison};
   }
@@ -91,25 +75,25 @@ export function SoumData($log, $http, $q, Config, NationalConfig, _) {
     return result;
   }
 
-  function formatSoumData(soumRow, mapSections) {
-    // Take a key->value row from CartoSQL and format it the same way as NationalConfig
-    const soum = {};
+  function formatKhorooData(row, mapSections) {
+    // Take a key->value row from CartoSQL and format it the same way as Config
+    const khoroo = {};
     for (const label of Object.keys(mapSections)) {
       const section = mapSections[label];
-      soum[label] = processSection(soumRow, section, 'visualizations');
+      khoroo[label] = processSection(row, section, 'visualizations');
     }
-    soum.metadata = processSection(soumRow, NationalConfig.metadata, 'fields');
+    khoroo.metadata = processSection(row, UlaanbaatarConfig.metadata, 'fields');
 
-    return soum;
+    return khoroo;
   }
 
-  function processSection(soumRow, section, container) {
-    // Process through a section of the NationalConfig definitions and add values from
+  function processSection(row, section, container) {
+    // Process through a section of the Config definitions and add values from
     //  CartoSQL to each field.
     const results = {};
     for (const variable of section[container]) {
-      // Attach this Soum's value to the column object
-      variable.value = soumRow[variable.field];
+      // Attach this Khoroo's value to the column object
+      variable.value = row[variable.field];
       const id = variable.key || variable.field;
       results[id] = variable;
     }
@@ -123,7 +107,7 @@ export function SoumData($log, $http, $q, Config, NationalConfig, _) {
     for (const label of Object.keys(mapSections)) {
       loadSectionFields(fields, mapSections[label], 'visualizations');
     }
-    loadSectionFields(fields, NationalConfig.metadata, 'fields');
+    loadSectionFields(fields, UlaanbaatarConfig.metadata, 'fields');
     return fields;
   }
 
@@ -137,15 +121,15 @@ export function SoumData($log, $http, $q, Config, NationalConfig, _) {
     }
   }
 
-  function loadSoumData(soumId, mapSections) {
-    // Given a Soum ID, use CartoSQL to load all data referenced in the NationalConfig
-    //  for that Soum.
+  function loadKhorooData(khorooId, mapSections) {
+    // Given a Khoroo ID, use CartoSQL to load all data referenced in the Config
+    //  for that Khoroo.
     const fieldList = getAllFields(mapSections);
     const promises = [];
 
     for (const table of Object.keys(fieldList)) {
       const fields = fieldList[table];
-      const query = `SELECT ${fields} FROM ${table} WHERE soumcode = ${soumId}`;
+      const query = `SELECT ${fields} FROM ${table} WHERE kh_eng = '${khorooId}'`;
 
       const request = {
         method: 'GET',
