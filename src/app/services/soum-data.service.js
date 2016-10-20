@@ -1,7 +1,7 @@
 const cartodb = require('cartodb');
 
 /** @ngInject */
-export function SoumData($log, $http, $q, Config, _) {
+export function SoumData($log, $http, $q, Config, NationalConfig, _) {
   return {
     geojson,
     load,
@@ -93,19 +93,19 @@ export function SoumData($log, $http, $q, Config, _) {
   }
 
   function formatSoumData(soumRow, mapSections) {
-    // Take a key->value row from CartoSQL and format it the same way as Config
+    // Take a key->value row from CartoSQL and format it the same way as NationalConfig
     const soum = {};
     for (const label of Object.keys(mapSections)) {
       const section = mapSections[label];
       soum[label] = processSection(soumRow, section, 'visualizations');
     }
-    soum.metadata = processSection(soumRow, Config.metadata, 'fields');
+    soum.metadata = processSection(soumRow, NationalConfig.metadata, 'fields');
 
     return soum;
   }
 
   function processSection(soumRow, section, container) {
-    // Process through a section of the Config definitions and add values from
+    // Process through a section of the NationalConfig definitions and add values from
     //  CartoSQL to each field.
     const results = {};
     for (const variable of section[container]) {
@@ -124,7 +124,7 @@ export function SoumData($log, $http, $q, Config, _) {
     for (const label of Object.keys(mapSections)) {
       loadSectionFields(fields, mapSections[label], 'visualizations');
     }
-    loadSectionFields(fields, Config.metadata, 'fields');
+    loadSectionFields(fields, NationalConfig.metadata, 'fields');
     return fields;
   }
 
@@ -139,7 +139,7 @@ export function SoumData($log, $http, $q, Config, _) {
   }
 
   function loadSoumData(soumId, mapSections) {
-    // Given a Soum ID, use CartoSQL to load all data referenced in the Config
+    // Given a Soum ID, use CartoSQL to load all data referenced in the NationalConfig
     //  for that Soum.
     const fieldList = getAllFields(mapSections);
     const promises = [];

@@ -6,16 +6,6 @@ import {UlaanbaatarConfig} from './config/ulaanbaatar';
 const config = {
   carto: {
     accountName: 'adbmongolia'
-  },
-  metadata: {
-    table: 'soums',
-    fields: [{
-      field: 'soum',
-      key: 'soum_name'
-    }, {
-      field: 'aimag',
-      key: 'aimag_name'
-    }]
   }
 };
 

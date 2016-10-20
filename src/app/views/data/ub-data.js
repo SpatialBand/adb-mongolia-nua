@@ -29,18 +29,18 @@ class UbDataViewController extends ADBMapController {
     this.$log.debug('khoroo:', this.khorooId);
 
     this.khorooData.geojson(this.khorooId).then(geojson => this._addGeoJSONLayer(geojson));
-    // const soumPromise = this.soumData.load(this.soumCode, this.pageConfig.mapSections)
-    //   .then(soum => this.soum = soum); // eslint-disable-line no-return-assign
+    const khorooPromise = this.khorooData.load(this.khorooId, this.pageConfig.mapSections)
+      .then(khoroo => this.khoroo = khoroo); // eslint-disable-line no-return-assign
 
-    // const compareColumns = [];
-    // for (const type of Object.keys(this.charts.histograms)) {
-    //   const field = this.charts.histograms[type].field;
-    //   compareColumns.push(field);
-    // }
+    const compareColumns = [];
+    for (const type of Object.keys(this.charts.histograms)) {
+      const field = this.charts.histograms[type].field;
+      compareColumns.push(field);
+    }
 
-    // const comparePromise = this.soumData.compare(this.soumCode, compareColumns);
+    const comparePromise = this.khorooData.compare(this.khorooId, compareColumns);
 
-    // this.$q.all([soumPromise, comparePromise]).then(results => this._setChartData(results));
+    this.$q.all([khorooPromise, comparePromise]).then(results => this._setChartData(results));
   }
 
   _setupMap(options) {
@@ -55,11 +55,11 @@ class UbDataViewController extends ADBMapController {
   }
 
   _setChartData(results) {
-    const soum = results[0];
+    const khoroo = results[0];
     const data = results[1];
     this.charts.data = data.rows;
-    this.charts.callouts.soum.label = soum.metadata.soum_name.value;
-
+    this.charts.callouts.khoroo.label = khoroo.metadata.khoroo_name.value;
+    console.log(data);
     this.charts.calloutList = [];
     for (const type of Object.keys(this.charts.callouts)) {
       const callout = this.charts.callouts[type];

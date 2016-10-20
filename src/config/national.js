@@ -1,4 +1,14 @@
 export const NationalConfig = {
+  metadata: {
+    table: 'soums',
+    fields: [{
+      field: 'soum',
+      key: 'soum_name'
+    }, {
+      field: 'aimag',
+      key: 'aimag_name'
+    }]
+  },
   map: {
     basemaps: {
       default: {

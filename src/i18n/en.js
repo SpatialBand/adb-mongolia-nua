@@ -37,14 +37,19 @@ export const en = {
   INFRASTRUCTURE_HEADER_LONG: 'Infrastructure &amp; Housing',
 
   DATA_SOUM_HIERARCHY: 'Mongolia, {{aimag_name}}, {{soum_name}}',
+  DATA_KHOROO_HIERARCHY: 'Mongolia, Ulaanbaatar, {{khoroo_name}}',
   DATA_BACK_TO_MAP: 'Back to Map',
 
   HISTOGRAM_PEOPLE_TITLE: 'Distribution of population density by soum',
   HISTOGRAM_HOUSEHOLDS_TITLE: 'Distribution of # of households by soum',
   HISTOGRAM_ECONOMY_TITLE: 'Distribution of total # of enterprises by soum',
   HISTOGRAM_INFRASTRUCTURE_TITLE: 'Distribution of % of population with access to piped water by soum',
+  HISTOGRAM_UB_PEOPLE_TITLE: 'Distribution of population density by khoroo',
+  HISTOGRAM_UB_HOUSEHOLDS_TITLE: 'Distribution of households by khoroo',
+  HISTOGRAM_UB_EMPLOYMENT_TITLE: 'Distribution of percent working age by khoroo',
   COUNTRY_LEGEND_LABEL: 'Country average',
   CLUSTER_LEGEND_LABEL: 'Cluster average',
+  ULAANBAATAR_LEGEND_LABEL: 'Ulaanbaatar average',
 
   MAP_OSM_ATTRIBUTION: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
   MAP_ARCGIS_WORLD_IMAGERY_ATTRIBUTION: 'Source: Esri, DigitalGlobe, GeoEye, Earthstar Geographics, CNES/Airbus DS, USDA, USGS, AEX, Getmapping, Aerogrid, IGN, IGP, swisstopo, and the GIS User Community',
