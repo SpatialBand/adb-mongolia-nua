@@ -38,6 +38,7 @@ export const mn = {
   DATA_SOUM_HIERARCHY: 'Монгол улс, {{aimag_name}}, {{soum_name}}',
   DATA_KHOROO_HIERARCHY: '!Mongolia, Ulaanbaatar, {{khoroo_name}}',
   DATA_BACK_TO_MAP: 'Газрын зураг руу буцах',
+  DATA_NO_DATA: '!No data available',
 
   MAP_OSM_ATTRIBUTION: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
   MAP_VIZ_POP: '2014 оны хүн ам',
