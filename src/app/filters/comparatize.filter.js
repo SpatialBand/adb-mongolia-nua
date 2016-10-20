@@ -1,11 +1,14 @@
 /** @ngInject */
-export function Comparatize($log, numberFilter) {
+export function Comparatize($log, $filter, numberFilter) {
   return function (value, isComparison, isPercent) {
     if (value === undefined) {
       // The filter was called before the form's controller was instantiated.
       // Returning undefined tells Angular that the value is still being
       // calculated and causes the filter to play nicely with one-time-bindings.
       return value;
+    }
+    if (value === null) {
+      return $filter('translate')("DATA_NO_DATA");
     }
 
     // Round to 2 digits to work around numberFilter's 3 digit default

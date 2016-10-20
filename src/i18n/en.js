@@ -39,6 +39,7 @@ export const en = {
   DATA_SOUM_HIERARCHY: 'Mongolia, {{aimag_name}}, {{soum_name}}',
   DATA_KHOROO_HIERARCHY: 'Mongolia, Ulaanbaatar, {{khoroo_name}}',
   DATA_BACK_TO_MAP: 'Back to Map',
+  DATA_NO_DATA: 'No data available',
 
   HISTOGRAM_PEOPLE_TITLE: 'Distribution of population density by soum',
   HISTOGRAM_HOUSEHOLDS_TITLE: 'Distribution of # of households by soum',
