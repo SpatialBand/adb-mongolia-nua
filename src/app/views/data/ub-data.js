@@ -59,7 +59,7 @@ class UbDataViewController extends ADBMapController {
     const data = results[1];
     this.charts.data = data.rows;
     this.charts.callouts.khoroo.label = khoroo.metadata.khoroo_name.value;
-    console.log(data);
+
     this.charts.calloutList = [];
     for (const type of Object.keys(this.charts.callouts)) {
       const callout = this.charts.callouts[type];

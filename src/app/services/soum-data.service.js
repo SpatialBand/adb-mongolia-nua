@@ -88,7 +88,6 @@ export function SoumData($log, $http, $q, Config, NationalConfig, _) {
         result[key] = row[key];
       }
     }
-    $log.log(result);
     return result;
   }
 

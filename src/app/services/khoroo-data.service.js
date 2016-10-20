@@ -72,7 +72,6 @@ export function KhorooData($log, $http, $q, Config, UlaanbaatarConfig, _) {
         result[key] = row[key];
       }
     }
-    $log.log(result);
     return result;
   }
 

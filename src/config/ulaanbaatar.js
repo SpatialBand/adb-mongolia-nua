@@ -165,6 +165,7 @@ export const UlaanbaatarConfig = {
         label: undefined, // Overriden by the khoroo's name
         color: '#0066b3'
       }
-    }
+    },
+    fillColor: '#ddd'
   }
 };
