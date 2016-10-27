@@ -9,24 +9,25 @@ footer {
 
     .brand {
       position: relative;
-      margin-top: -7px;
+      display: block;
+      margin: -7px auto;
+      width: 45rem;
+
+      > img {
+        position: relative;
+      }
     }
   }
 
   nav {
-    float: right;
-    display: inline-block;
-    vertical-align: middle;
-    margin-top: 12px;
-
-    @media (max-width: 910px) {
-      float: none;
-    }
+    margin: 0 auto -10px;
+    display: block;
+    text-align: center;
 
     a {
       padding: 20px;
       letter-spacing: 3px;
-      font-size: 18px;
+      font-size: 16px;
     }
   }
 
