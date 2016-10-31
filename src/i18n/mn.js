@@ -32,6 +32,7 @@ export const mn = {
   PEOPLE_HEADER: 'Хүн ам',
   HOUSEHOLDS_HEADER: 'Айл, өрх',
   ECONOMY_HEADER: 'Эдийн засаг',
+  EMPLOYMENT_HEADER: 'ажил',
   INFRASTRUCTURE_HEADER_SHORT: 'Дэд бүтэц',
   INFRASTRUCTURE_HEADER_LONG: 'Дэд бүтэц ; Орон сууц',
 
