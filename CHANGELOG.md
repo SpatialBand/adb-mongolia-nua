@@ -1,5 +1,18 @@
 # Change Log
 
+## [0.3.0] - 2016-10-31
+
+Added:
+ - Ulaanbaatar map and data page
+ - New logo
+ - Additional MN translations for missing keys
+ - New images and footer on homepage
+
+Fixes:
+ - Cyrillic font issues
+ - Icons on map page
+
+
 ## [0.2.0] - 2016-10-11
 
 Added:
