@@ -47,7 +47,7 @@ export function KhorooData($log, $http, $q, Config, UlaanbaatarConfig, _) {
 
   function _parseCompare(data, khorooId, columns) {
     const rows = data.rows;
-    const khorooRow = _.find(rows, {kh_eng: khorooId});
+    const khorooRow = _.find(rows, {kh_eng: khorooId}); // eslint-disable-line camelcase
 
     const comparison = {
       ulaanbaatar: {},
