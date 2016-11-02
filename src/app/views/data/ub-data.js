@@ -2,19 +2,19 @@ import {ADBMapController} from '../../adb-map.controller';
 
 const L = require('leaflet');
 
-class DataViewController extends ADBMapController {
+class UbDataViewController extends ADBMapController {
 
   /** @ngInject */
-  constructor($window, $filter, $log, $scope, $stateParams, $timeout, $q, Config, NationalConfig, SoumData) {
+  constructor($window, $filter, $log, $scope, $stateParams, $timeout, $q, Config, UlaanbaatarConfig, KhorooData) {
     super($filter, Config, 'dataMap');
     this.$log = $log;
     this.$scope = $scope;
     this.$stateParams = $stateParams;
-    this.soumData = SoumData;
+    this.khorooData = KhorooData;
     this.$timeout = $timeout;
     this.$window = $window;
     this.$q = $q;
-    this.pageConfig = NationalConfig;
+    this.pageConfig = UlaanbaatarConfig;
   }
 
   $onInit() {
@@ -25,12 +25,12 @@ class DataViewController extends ADBMapController {
     this.charts.calloutList = [];
     this.charts.data = undefined;
 
-    this.soumCode = Number.parseInt(this.$stateParams.soumCode, 10);
-    this.$log.debug('soum code:', this.soumCode);
+    this.khorooId = this.$stateParams.khorooId;
+    this.$log.debug('khoroo:', this.khorooId);
 
-    this.soumData.geojson(this.soumCode).then(geojson => this._addGeoJSONLayer(geojson));
-    const soumPromise = this.soumData.load(this.soumCode, this.pageConfig.mapSections)
-      .then(soum => this.soum = soum); // eslint-disable-line no-return-assign
+    this.khorooData.geojson(this.khorooId).then(geojson => this._addGeoJSONLayer(geojson));
+    const khorooPromise = this.khorooData.load(this.khorooId, this.pageConfig.mapSections)
+      .then(khoroo => this.khoroo = khoroo); // eslint-disable-line no-return-assign
 
     const compareColumns = [];
     for (const type of Object.keys(this.charts.histograms)) {
@@ -38,9 +38,9 @@ class DataViewController extends ADBMapController {
       compareColumns.push(field);
     }
 
-    const comparePromise = this.soumData.compare(this.soumCode, compareColumns);
+    const comparePromise = this.khorooData.compare(this.khorooId, compareColumns);
 
-    this.$q.all([soumPromise, comparePromise]).then(results => this._setChartData(results));
+    this.$q.all([khorooPromise, comparePromise]).then(results => this._setChartData(results));
   }
 
   _setupMap(options) {
@@ -49,14 +49,16 @@ class DataViewController extends ADBMapController {
   }
 
   _addGeoJSONLayer(geojson) {
-    L.geoJson(geojson).addTo(this.map);
+    const layer = L.geoJson(geojson);
+    layer.addTo(this.map);
+    this.map.fitBounds(layer.getBounds(), {maxZoom: 13});
   }
 
   _setChartData(results) {
-    const soum = results[0];
+    const khoroo = results[0];
     const data = results[1];
     this.charts.data = data.rows;
-    this.charts.callouts.soum.label = soum.metadata.soum_name.value;
+    this.charts.callouts.khoroo.label = khoroo.metadata.khoroo_name.value;
 
     this.charts.calloutList = [];
     for (const type of Object.keys(this.charts.callouts)) {
@@ -68,7 +70,7 @@ class DataViewController extends ADBMapController {
   }
 }
 
-export const adbDataView = {
-  templateUrl: 'app/views/data/data.html',
-  controller: DataViewController
+export const adbUbDataView = {
+  templateUrl: 'app/views/data/ub-data.html',
+  controller: UbDataViewController
 };

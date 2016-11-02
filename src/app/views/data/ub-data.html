@@ -1,0 +1,123 @@
+<adb-navbar-view></adb-navbar-view>
+<div class="data-container">
+  <div id="dataMap" class="map">
+  </div>
+  <main>
+    <div class="container">
+      <a ui-sref="ub-map" class="pull-right" id="back-to-map">
+        <i class="icon-arrow-left"></i><span translate="DATA_BACK_TO_MAP"></span>
+      </a>
+      <h1 class="h5 font-alt text-uppercase" translate="DATA_KHOROO_HIERARCHY"
+      translate-values="{khoroo_name: $ctrl.khoroo.metadata.khoroo_name.value}"></h1>
+    </div>
+
+    <!-- PEOPLE Section -->
+    <section>
+      <div class="container">
+        <h2 class="text-uppercase" translate="PEOPLE_HEADER"></h2>
+        <div class="flex-grid">
+          <adb-infoblock-view variable="$ctrl.khoroo.people.pop_2015" class="panel half"></adb-infoblock-view>
+          <adb-infoblock-view variable="$ctrl.khoroo.people.pchn1115" class="panel half"></adb-infoblock-view>
+        </div>
+        <div class="flex-grid">
+          <div class="panel histogram">
+            <div class="panel-content text-center">
+              <div class="spinner" ng-if="!$ctrl.charts.data">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+              </div>
+              <adb-histogram class="clearfix"
+                ng-if="$ctrl.charts.data"
+                data="$ctrl.charts.data"
+                callouts="$ctrl.charts.calloutList"
+                value-field="$ctrl.charts.histograms.people.field"
+                chart-color="$ctrl.charts.fillColor"
+                allow-redraw="true">
+              </adb-histogram>
+              <p class="font-alt color-light text-uppercase" translate="{{ $ctrl.charts.histograms.people.title }}"></p>
+            </div>
+          </div>
+        </div>
+        <div class="flex-grid">
+          <adb-infoblock-view variable="$ctrl.khoroo.people.dens15" class="panel third"></adb-infoblock-view>
+          <adb-infoblock-view variable="$ctrl.khoroo.people.p05_15pc" class="panel third"></adb-infoblock-view>
+          <adb-infoblock-view variable="$ctrl.khoroo.people.p615_15pc" class="panel third"></adb-infoblock-view>
+        </div>
+        <div class="flex-grid">
+          <adb-infoblock-view variable="$ctrl.khoroo.people.p60_15pc" class="panel"></adb-infoblock-view>
+          <adb-infoblock-view variable="$ctrl.khoroo.people.p60ch" class="panel"></adb-infoblock-view>
+          <adb-infoblock-view variable="$ctrl.khoroo.people.kindchn" class="panel"></adb-infoblock-view>
+          <adb-infoblock-view variable="$ctrl.khoroo.people.schchn" class="panel"></adb-infoblock-view>
+        </div>
+      </div>
+    </section>
+    <!-- PEOPLE Section -->
+
+    <!-- HOUSEHOLDS Section -->
+    <section>
+      <div class="container">
+        <h2 class="text-uppercase" translate="HOUSEHOLDS_HEADER"></h2>
+        <div class="flex-grid">
+          <adb-infoblock-view variable="$ctrl.khoroo.households.hh15" class="panel third"></adb-infoblock-view>
+          <adb-infoblock-view variable="$ctrl.khoroo.households.poorhhchn" class="panel third"></adb-infoblock-view>
+          <adb-infoblock-view variable="$ctrl.khoroo.households.poorhhpc" class="panel third"></adb-infoblock-view>
+        </div>
+        <div class="flex-grid">
+          <div class="panel histogram">
+            <div class="panel-content text-center">
+              <div class="spinner" ng-if="!$ctrl.charts.data">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+              </div>
+              <adb-histogram class="clearfix"
+                ng-if="$ctrl.charts.data"
+                data="$ctrl.charts.data"
+                callouts="$ctrl.charts.calloutList"
+                value-field="$ctrl.charts.histograms.households.field"
+                chart-color="$ctrl.charts.fillColor"
+                allow-redraw="true">
+              </adb-histogram>
+              <p class="font-alt color-light text-uppercase" translate="{{ $ctrl.charts.histograms.households.title }}"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- HOUSEHOLDS Section -->
+
+    <!-- EMPLOYMENT Section -->
+    <section>
+      <div class="container">
+        <h2 class="text-uppercase" translate="EMPLOYMENT_HEADER"></h2>
+        <div class="flex-grid">
+            <adb-infoblock-view variable="$ctrl.khoroo.employment.p1959chn" class="panel half"></adb-infoblock-view>
+            <adb-infoblock-view variable="$ctrl.khoroo.employment.p1959_15pc" class="panel half"></adb-infoblock-view>
+        </div>
+        <div class="flex-grid">
+          <div class="panel histogram">
+            <div class="panel-content text-center">
+              <div class="spinner" ng-if="!$ctrl.charts.data">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+              </div>
+              <adb-histogram class="clearfix"
+                ng-if="$ctrl.charts.data"
+                data="$ctrl.charts.data"
+                callouts="$ctrl.charts.calloutList"
+                value-field="$ctrl.charts.histograms.employment.field"
+                chart-color="$ctrl.charts.fillColor"
+                allow-redraw="true">
+              </adb-histogram>
+              <p class="font-alt color-light text-uppercase" translate="{{ $ctrl.charts.histograms.employment.title }}"></p>
+            </div>
+          </div>
+        </div>
+        <div class="flex-grid">
+          <adb-infoblock-view variable="$ctrl.khoroo.employment.empchn" class="panel half"></adb-infoblock-view>
+          <adb-infoblock-view variable="$ctrl.khoroo.employment.unemchn" class="panel half" reverse-color="true"></adb-infoblock-view>
+        </div>
+      </div>
+    </section>
+    <!-- EMPLOYMENT Section -->
+  </main>
+</div>

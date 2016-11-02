@@ -16,7 +16,9 @@ class InfoblockController {
     this.isPercent = this.variable.isPercent;
 
     this.colorClass = '';
-    if (this.isChange && this.value !== 0) {
+    if (this.value === null) {
+      this.colorClass = 'no-data';
+    } else if (this.isChange && this.value !== 0) {
       let ispositive = (this.value > 0);
       if (this.variable.reverseColor) {
         ispositive = !ispositive;

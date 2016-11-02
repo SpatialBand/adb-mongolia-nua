@@ -6,27 +6,27 @@ footer {
 
   .panel {
     padding: 30px;
+    text-align: center;
 
     .brand {
       position: relative;
-      margin-top: -7px;
+      margin: -7px auto;
+
+      > img {
+        position: relative;
+      }
     }
   }
 
   nav {
-    float: right;
-    display: inline-block;
-    vertical-align: middle;
-    margin-top: 12px;
-
-    @media (max-width: 910px) {
-      float: none;
-    }
+    margin: 0 auto -10px;
+    display: block;
+    text-align: center;
 
     a {
       padding: 20px;
       letter-spacing: 3px;
-      font-size: 18px;
+      font-size: 16px;
     }
   }
 

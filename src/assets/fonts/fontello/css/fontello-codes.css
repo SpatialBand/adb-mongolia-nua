@@ -13,3 +13,6 @@
 .icon-down:before { content: '\e80b'; } /* '' */
 .icon-up:before { content: '\e80c'; } /* '' */
 .icon-layers:before { content: '\e80d'; } /* '' */
+.icon-household:before { content: '\e80e'; } /* '' */
+.icon-industrial:before { content: '\e80f'; } /* '' */
+.icon-economy:before { content: '\e810'; } /* '' */
