@@ -89,7 +89,7 @@ export const NationalConfig = {
     },
     households: {
       title: 'HOUSEHOLDS_HEADER',
-      icon: 'icon-bus',
+      icon: 'icon-household',
       table: 'soums',
       visualizations: [{
         id: '174eb7cc-cc92-449b-9773-e3d5aab64e41',
@@ -119,7 +119,7 @@ export const NationalConfig = {
     },
     economy: {
       title: 'ECONOMY_HEADER',
-      icon: 'icon-briefcase',
+      icon: 'icon-economy',
       table: 'soums',
       visualizations: [{
         id: 'accdffb8-54f4-11e6-af54-0e233c30368f',
@@ -160,7 +160,7 @@ export const NationalConfig = {
     },
     infrastructure: {
       title: 'INFRASTRUCTURE_HEADER_SHORT',
-      icon: 'icon-book',
+      icon: 'icon-industrial',
       table: 'soums',
       visualizations: [{
         id: '9db8a964-559a-11e6-9426-0e3ff518bd15',

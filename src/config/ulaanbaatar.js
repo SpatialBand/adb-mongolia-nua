@@ -94,7 +94,7 @@ export const UlaanbaatarConfig = {
     },
     households: {
       title: 'HOUSEHOLDS_HEADER',
-      icon: 'icon-bus',
+      icon: 'icon-household',
       table: 'khoroos',
       visualizations: [{
         id: '6418ee08-8667-4724-9092-d44c08d86894',
