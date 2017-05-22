@@ -44,6 +44,23 @@ The available development commands are:
 
 Run tests with `npm run test`
 
+### Configuring the app
+
+The app can be configured by modifying:
+- [Ulaanbaatar config](src/config/ulaanbaatar.js)
+- [National config](src/config/national.js)
+
+These files are commented to describe the available options.
+
+**Note:** If you use a new translation key in one of the configuration files, ensure that you add the key to the [translation files](src/i18n). See [Translations](#translations) for more info.
+
+### Translations
+
+This app supports English and Mongolian translations via [angular-translate](https://angular-translate.github.io/). For general information, see their documentation.
+
+If you need to simply update the translation keys, ensure that you add new keys with proper translations to both the [EN and MN js files](src/i18n/). The application will need to be redeployed after any translation changes.
+
+
 ## Deployment
 
 ### Requirements
@@ -87,6 +104,6 @@ https://github.com/laurilehmijoki/s3_website
 ### S3/CloudFront permissions
 
 If the deployment or configuration changes fail with permissions errors, you may need to ensure
-that your keys have the proper permissions to perform the actions that s3_website is attempting.
+that your AWS keys have the proper permissions to perform the actions that s3_website is attempting.
 This configuration should have the permissions that s3_website requires:
 https://github.com/laurilehmijoki/s3_website/blob/master/additional-docs/setting-up-aws-credentials.md

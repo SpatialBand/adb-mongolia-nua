@@ -1,3 +1,6 @@
+// Configuration for the Ulaanbaatar section of the app
+// The configuration format here matches the one for the National section
+// See src/config/national.js for details
 export const UlaanbaatarConfig = {
   metadata: {
     table: 'khoroos',
@@ -162,7 +165,8 @@ export const UlaanbaatarConfig = {
         color: '#323349'
       },
       khoroo: {
-        label: undefined, // Overriden by the khoroo's name
+        // Overriden by the Khoroo's name, this label should be left as undefined
+        label: undefined,
         color: '#0066b3'
       }
     },
