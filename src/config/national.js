@@ -176,11 +176,10 @@ export const NationalConfig = {
         field: 'chman0014',
         title: 'MAP_VIZ_ECON_MANUFACTURING_COUNT_CHANGE',
         isChange: true
-      // }, {
-      //   id: '',
-      //   field: 'pcpov11',
-      //   title: 'MAP_VIZ_ECON_POVERTY_PCT',
-      //   isPercent: true
+      }, {
+        id: '4b66b998-5779-4a3c-bb8e-c1d15ed69b3a',
+        field: 'pov11',
+        title: 'MAP_VIZ_ECON_POV'
       }, {
         id: '9adf865a-337a-4960-8f1d-2bd0c6420f56',
         field: 'chpcpov11',
